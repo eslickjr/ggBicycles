@@ -30,7 +30,7 @@
 #landingTitleContainer {
     position: relative;
     width: 100%;
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/black-and-white-header-image-copy-1024x709.png") no-repeat center center;
+    background: url("../assets/goldenGrove.png") no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -162,42 +162,42 @@
 }
 
 .lrImg0 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-15.jpg") no-repeat center center;
+    background: url("../assets/chainSpray.jpg") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg1 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-2.jpg") no-repeat center center;
+    background: url("../assets/bmx.png") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg2 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-9.jpg") no-repeat center center;
+    background: url("../assets/sunsetRide.jpg") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg3 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-8.jpg") no-repeat center center;
+    background: url("../assets/mountainBike.png") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg4 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-10.jpg") no-repeat center center;
+    background: url("../assets/kids.png") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg5 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-13.jpg") no-repeat center center;
+    background: url("../assets/tandem.png") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg6 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-14.jpg") no-repeat center center;
+    background: url("../assets/sunsetSil.png") no-repeat center center;
     background-size: cover;
 }
 
 .lrImg7 {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-17.jpg") no-repeat center center;
+    background: url("../assets/mountainBike2.png") no-repeat center center;
     background-size: cover;
 }
 
@@ -273,7 +273,7 @@
 
 
 #landingInspectionsContainer {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-6.jpg") no-repeat center center;
+    background: url("../assets/tech.png") no-repeat center center;
     background-size: cover;
 }
 
@@ -287,7 +287,7 @@
 }
 
 #landingPersonalizedContainer {
-    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/qtq70fmfjpeg-25.jpg") no-repeat center center;
+    background: url("../assets/trail.png") no-repeat center center;
     background-size: cover;
 }
 
@@ -412,7 +412,7 @@ body:has(#landingModalWrapper.active) {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: transparent;
+    background: radial-gradient(at bottom left, var(--bg-third-color), var(--bg-third-color) 50%);
     color: rgb(255, 64, 64);
     border-radius: 5px;
     border: 1px solid white;
@@ -420,14 +420,14 @@ body:has(#landingModalWrapper.active) {
     margin-bottom: 20px;
     font-weight: bolder;
     box-shadow: none;
-    transition: transform .5s ease;
+    /* transition: background-color .5s ease, color .5s ease; */
 }
 
 #landingModalClose:hover {
     background: radial-gradient(at bottom left, white, rgb(255, 64, 64) 50%);
     /* transform: scale(1.05); */
     color: white;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, .5);
+    /* box-shadow: 0px 0px 10px rgba(255, 255, 255, .5); */
 }
 
 .landingModalLabel {
@@ -464,7 +464,7 @@ body:has(#landingModalWrapper.active) {
     cursor: pointer;
     margin-top: 20px;
     box-shadow: none;
-    transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease;
+    /* transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease; */
 }
 
 #landingModalSubmit:hover {
@@ -472,5 +472,5 @@ body:has(#landingModalWrapper.active) {
     color: white;
     border: 2px solid white;
     /* transform: scale(1.05); */
-    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, .5), 0px 0px 10px rgba(0, 0, 0, .5); */
+    /* box-shadow: 0px 0px 5px rgba(255, 255, 255, .5), 0px 0px 10px rgba(255, 255, 255, .5); */
 }

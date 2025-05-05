@@ -11,6 +11,7 @@ export default function Landing() {
   const [imgTransition, setImgTransition] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [modal, setModal] = useState(false);
+  const [aptPhone, setAptPhone] = useState("");
   const limit = 7;
 
   useEffect(() => {
@@ -58,8 +59,31 @@ export default function Landing() {
     }
   }, []);
 
-  if (scrollRef.current > -1) {
-    window.scrollTo(0, scrollRef.current);
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nameInput = e.target as HTMLInputElement;
+    nameInput.value = nameInput.value.replace(/[^a-zA-Z\s]/g, "");
+  }
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let phone = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+    
+    
+    if (phone.length > 0) {
+      phone = '(' + phone;
+    }
+
+    if (phone.length > 4) {
+      phone = phone.slice(0, 4) + ') ' + phone.slice(4);
+    }
+
+    if (phone.length > 9) {
+      phone = phone.slice(0, 9) + '-' + phone.slice(9, 13);
+    }
+    
+    setAptPhone(phone);
+  }
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailInput = e.target as HTMLInputElement;
+    emailInput.value = emailInput.value.replace(/[^a-zA-Z0-9@._-]/g, "");
   }
 
   return (
@@ -114,6 +138,15 @@ export default function Landing() {
       <div id="landingApptContainer">
         <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true); scrollRef.current = window.scrollY;}} />
       </div>
+      {/* <div id="landingReviewsContainer">
+        <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What Our Customers Say</h2>
+        <div id="landingReviewsWrapper">
+          <div id="landingReviewsContainer">
+            <div id="landingReviewsOverlay" />
+            <p id="landingReviewsSummary">We take pride in our work and our customers love us for it. Check out some of the great things they have to say about us!</p>
+          </div>
+        </div>
+      </div> */}
       <div id="landingModalWrapper" className={modal ? "active" : ""}>
         <div id="landingModalOverlay" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
         <div id="landingModalContainer">
@@ -123,11 +156,11 @@ export default function Landing() {
               <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
             </div>
             <label htmlFor="landingModalName" className="landingModalLabel">Name</label>
-            <input id="landingModalName" className="landingModalInput" type="text" name="name" required />
+            <input id="landingModalName" className="landingModalInput" type="text" name="name" onChange={handleNameChange} required />
             <label htmlFor="landingModalEmail" className="landingModalLabel">Email</label>
-            <input id="landingModalEmail" className="landingModalInput" type="email" name="email" required />
+            <input id="landingModalEmail" className="landingModalInput" type="email" name="email" onChange={handleEmailChange} required />
             <label htmlFor="landingModalPhone"className="landingModalLabel">Phone</label>
-            <input id="landingModalPhone" className="landingModalInput" type="tel" name="phone" required />
+            <input id="landingModalPhone" className="landingModalInput" type="tel" name="phone" value={aptPhone} onChange={handlePhoneChange} required />
             <label htmlFor="landingModalMessage"className="landingModalLabel">Message</label>
             <textarea id="landingModalMessage" className="landingModalTextArea" name="message" required />
             <input id="landingModalSubmit" type="submit" value="Submit" />

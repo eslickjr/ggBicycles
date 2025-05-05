@@ -1,6 +1,6 @@
 #reviewsBackground {
     padding: 120px 120px 120px 0;
-    background: url("./../assets/greyWorking.jpg") no-repeat center center;
+    background: url("../assets/greyWorking.jpg") no-repeat center center;
     background-size: cover;
     width: 100%;
     aspect-ratio: 1 / .25;

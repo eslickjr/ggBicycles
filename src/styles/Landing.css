@@ -167,8 +167,8 @@
 }
 
 .lrImg1 {
-    background: url("../assets/bmx.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/bmx.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImg2 {
@@ -177,28 +177,28 @@
 }
 
 .lrImg3 {
-    background: url("../assets/mountainBike.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/mountainBike.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImg4 {
-    background: url("../assets/kids.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/kids.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImg5 {
-    background: url("../assets/tandem.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/tandem.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImg6 {
-    background: url("../assets/sunsetSil.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/sunsetSil.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImg7 {
-    background: url("../assets/mountainBike2.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/mountainBike2.png") no-repeat top left;
+    background-size: 105.26% 105.26%;
 }
 
 .lrImage.activeM {

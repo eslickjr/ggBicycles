@@ -1,23 +1,12 @@
 :root {
-    --main-bg-color: #DCE0D9;
-    --main-text-color: #0c4d6b;
-    --main-accent-color: #6B0F1A;
-    --main-third-color: #595959;
-    --main-secondary-color: #808F85;
-    --main-text-secondary-color: #97deff;
-    --main-text-third-color: #357796;
+    --facebook-color: #1877F2;
+    --instagram-color: #E4405F;
 
-    --nav-header: #86d9ff;
-    --nav-link-hover: #d3ecf8;
-    --nav-link: #2b2f31;
+    --bg-first-color: #e2e2e2;
+    --bg-second-color: #606060;
+    --bg-third-color: #212529;
 
-    --button-font: "Passion One";
-    --header-font: "Yanone Kaffeesatz";
-    --body-font: "Mako";
-    --link-font: "Oswald";
-    --nav-header-font: "Nanum Myeongjo";
-
-    --project-count: 15;
+    --text-color: #f7c500;
 }
 
 * {
@@ -31,7 +20,7 @@ ul {
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: var(--main-third-color);
+    background: var(--bg-first-color);
     overflow-x: hidden;
 }
 
@@ -40,13 +29,17 @@ a {
     color: black;
 }  
 
+p {
+    font-family: "Cactus Classical Serif", serif;
+    color: white;
+}
 
+h2, h3, h4 {
+    font-family: "Cal Sans", sans-serif;
+    letter-spacing: 2px;
+}
 
-.aboutMe {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: relative;
-    background-color: var(--main-bg-color);
-    margin-bottom: 20px;
+input[type="button"] {
+    font-family: "PT Serif", serif;
+    font-weight: 400;
 }

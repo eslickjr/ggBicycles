@@ -1,0 +1,112 @@
+#theFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--bg-third-color);
+    bottom: 0;
+    padding-top: 20px;
+}
+
+#footerInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#footerSocialMedias {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+}
+
+#footerLogo {
+    background: url("https://goldengrovebicycles.com/wp-content/uploads/2024/06/GGBC-Web-logo_horizontal.png") no-repeat center center;
+    background-size: cover;
+    height: 50px;
+    aspect-ratio: 240 / 71;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#socialMediaContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.svg-inline--fa {
+    width: 30px;
+    height: 30px;
+}
+
+.fa-facebook-f {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: var(--facebook-color);
+}
+
+.fa-facebook-f:hover {
+    background: radial-gradient(circle at bottom left, white, var(--facebook-color) 50%, var(--facebook-color));
+    color: white;
+}
+
+.fa-instagram {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: var(--instagram-color);
+}
+
+.fa-instagram:hover {
+    background: radial-gradient(circle at bottom left, white, var(--instagram-color) 50%, var(--instagram-color));
+    color: white;
+}
+
+#footerContact {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+
+.footerInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding-left: 50px;
+    margin: 3px 0;
+    color: var(--text-color);
+}
+
+.footerInfoIcon {
+    height: 1em;
+    width: 1em;
+    vertical-align: left;
+    color: var(--text-color);
+}
+
+#developerInfo {
+    color: var(--text-color);
+    font-weight: 100;
+    font-size: 0.6em;
+}
+
+#devLink {
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+}

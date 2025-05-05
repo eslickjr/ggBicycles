@@ -11,17 +11,17 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY <= 60) {
-        setScrolled(false);
-      } else {
+      if (window.scrollY > 0) {
         setScrolled(true);
+      } else {
+        setScrolled(false);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -30,9 +30,11 @@ export default function Header() {
   }
 
   return (
-    <header id="theHead" className={scrolled ? 'scrolled' : ''}>
-      <h1 onClick={handleClick}>Joshua Eslick</h1>
-      <Navigation />
+    <header id="theHeadContainer" className={scrolled ? 'scrolled' : ''}>
+      <div id="theHead">
+        <div id="headerLogo" onClick={handleClick} />
+        <Navigation />
+      </div>
     </header>
   );
 }

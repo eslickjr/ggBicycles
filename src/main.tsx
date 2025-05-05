@@ -3,13 +3,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from './App.js';
-import Error from './pages/Error.js';
-import Portfolio from './pages/Portfolio.js';
-import Resume from './pages/Resume.js';
-import Contact from './pages/Contact.js';
-import About from './pages/About.js';
-import Timeline from './pages/Timeline.js';
+import App from './App';
+import Error from './pages/Error';
+import Landing from './pages/Landing';
+import Projects from './pages/Projects';
+import About from './pages/About';
+import Reviews from './pages/Reviews';
 
 const router = createBrowserRouter([
   {
@@ -19,23 +18,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Portfolio />,
+        element: <Landing />,
       },
       {
-        path: '/resume',
-        element: <Resume />,
+        path: '/Projects',
+        element: <Projects />,
       },
       {
-        path: '/contact',
-        element: <Contact />,
-      },
-      {
-        path: '/about',
+        path: '/About',
         element: <About />,
       },
       {
-        path: '/timeline',
-        element: <Timeline />,
+        path: '/Reviews',
+        element: <Reviews />,
       }
     ],
   },

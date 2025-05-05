@@ -4,49 +4,31 @@ export default function Navigation() {
   const currentPage = useLocation().pathname;
 
   return (
-    <nav id="theNav">
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <Link
-            to="/"
-            className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
-          >
-            Portfolio
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/Timeline"
-            className={currentPage === '/Timeline' ? 'nav-link active' : 'nav-link'}
-          >
-            Timeline
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/About"
-            className={currentPage === '/About' ? 'nav-link active' : 'nav-link'}
-          >
-            About Me
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/Resume"
-            className={currentPage === '/Resume' ? 'nav-link active' : 'nav-link'}
-          >
-            Skills
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/Contact"
-            className={currentPage === '/Contact' ? 'nav-link active' : 'nav-link'}
-          >
-            Hire Me
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <ul id="theNav">
+      <li className="nav-item">
+        <Link
+          to="/About"
+          className={currentPage === '/About' ? 'nav-link active' : 'nav-link'}
+        >
+          ABOUT
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/Projects"
+          className={currentPage === '/Projects' ? 'nav-link active' : 'nav-link'}
+        >
+          PROJECTS
+        </Link>
+      </li>
+      {/* <li className="nav-item">
+        <Link
+          to="/Reviews"
+          className={currentPage === '/Reviews' ? 'nav-link active' : 'nav-link'}
+        >
+          REVIEWS
+        </Link>
+      </li> */}
+    </ul>
   );
 }

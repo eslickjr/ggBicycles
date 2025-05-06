@@ -26,8 +26,8 @@
 }
 
 #footerLogo {
-    /* background: url("../assets/iconWtext.jpg") no-repeat center center;
-    background-size: cover; */
+    background: url("../assets/logos/GGBC%20Logo%20512px.png") no-repeat center center;
+    background-size: cover;
     height: 50px;
     aspect-ratio: 240 / 71;
     padding: 20px;

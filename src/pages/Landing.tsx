@@ -13,6 +13,51 @@ export default function Landing() {
   const [modal, setModal] = useState(false);
   const [aptPhone, setAptPhone] = useState("");
   const limit = 7;
+  const [reviewsOnScreen, setReviewsOnScreen] = useState([0, 1, 2, 3, 4]);
+  const reviewIndex = useRef(0);
+
+  const reviewData = [
+    {
+        name: "John Doe",
+        review: "Great service and friendly staff!",
+        rating: 5,
+    },
+    {
+        name: "Jane Smith",
+        review: "Wide selection of bikes and accessories.",
+        rating: 5,
+    },
+    {
+        name: "Alice Johnson",
+        review: "Knowledgeable staff and great prices.",
+        rating: 5,
+    },
+    {
+        name: "Bob Brown",
+        review: "Had a great experience buying my first bike.",
+        rating: 5,
+    },
+    {
+        name: "Charlie Davis",
+        review: "Highly recommend for all your biking needs!",
+        rating: 5,
+    },
+    {
+        name: "Diana Evans",
+        review: "The staff is very helpful and friendly.",
+        rating: 5,
+    },
+    {
+        name: "Ethan Foster",
+        review: "Best bike shop in town!",
+        rating: 5,
+    },
+    {
+        name: "Fiona Green",
+        review: "I love my new bike!",
+        rating: 5,
+    },
+  ];
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -52,8 +97,30 @@ export default function Landing() {
       }, 500);
     }, 3000);
 
+    const reviewInterval = setInterval(() => {
+      reviewIndex.current = reviewIndex.current + 1 > reviewData.length - 1 ? 0 : reviewIndex.current + 1;
+      setReviewsOnScreen(prevReviews => {
+        const newReviews = prevReviews.map((_, index) => {
+          if (reviewIndex.current <= reviewData.length - 5) {
+            return reviewIndex.current + index;
+          } else {
+            if (index + reviewIndex.current > reviewData.length - 1) {
+              return index + reviewIndex.current - reviewData.length;
+            } else {
+              return index + reviewIndex.current;
+            }
+          }
+        });
+
+        console.log(reviewIndex.current);
+        console.log(newReviews);
+        return newReviews;
+      });
+    }, 8000);
+
     return () => {
       clearInterval(interval);
+      clearInterval(reviewInterval);
       clearTimeout(timeout);
       setLoaded(false);
     }
@@ -84,6 +151,22 @@ export default function Landing() {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target as HTMLInputElement;
     emailInput.value = emailInput.value.replace(/[^a-zA-Z0-9@._-]/g, "");
+  }
+
+  const reviewsList = () => {
+    return reviewsOnScreen.map((data, index) => {
+        return (
+          <div key={index} className={`landingReviewContainer ${index === 4 ? "lastOnScreen" : "mainOnScreen"}`}>
+            <h2 className="landingReviewTitle">{reviewData[data].name}</h2>
+            <div className="ratingContainer">
+              {Array.from({ length: reviewData[data].rating }).map((_, i) => (
+                <span key={i} className="star">⭐</span>
+              ))}
+            </div>
+            <p className="landingReviewSummary">{reviewData[data].review}</p>
+          </div>
+        );
+    });  
   }
 
   return (
@@ -138,15 +221,17 @@ export default function Landing() {
       <div id="landingApptContainer">
         <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true); scrollRef.current = window.scrollY;}} />
       </div>
-      {/* <div id="landingReviewsContainer">
+      <div id="landingReviewsWrapper">
         <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What Our Customers Say</h2>
         <div id="landingReviewsWrapper">
           <div id="landingReviewsContainer">
             <div id="landingReviewsOverlay" />
-            <p id="landingReviewsSummary">We take pride in our work and our customers love us for it. Check out some of the great things they have to say about us!</p>
+            {reviewsList()}
+
+            {/* <p id="landingReviewsSummary">We take pride in our work and our customers love us for it. Check out some of the great things they have to say about us!</p> */}
           </div>
         </div>
-      </div> */}
+      </div>
       <div id="landingModalWrapper" className={modal ? "active" : ""}>
         <div id="landingModalOverlay" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
         <div id="landingModalContainer">

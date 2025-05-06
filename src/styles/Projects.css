@@ -44,10 +44,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    width: calc(100% + 120px);
-    margin: 120px 0;
-    margin-left: -60px;
-    margin-right: -60px;
+    width: calc(100% + 220px);
+    margin: 120px -110px;
     transition: transform 0.3s ease;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -77,6 +75,10 @@
     transform: translateX(0);
 }
 
+.projWrapper:nth-child(odd) .projContainer.onScreen:hover {
+    transform: translateX(50px);
+}
+
 .projWrapper:nth-child(even) .projContainer {
     flex-direction: row-reverse;
     border-radius: 1000px 0 0 1000px;
@@ -97,6 +99,10 @@
 
 .projWrapper:nth-child(even) .projContainer.onScreen {
     transform: translateX(0);
+}
+
+.projWrapper:nth-child(even) .projContainer.onScreen:hover {
+    transform: translateX(-50px);
 }
 
 #projRepairContainer {

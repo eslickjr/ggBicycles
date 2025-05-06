@@ -26,7 +26,7 @@
 }
 
 #footerLogo {
-    background: url("../assets/logos/GGBC%20Logo%20512px.png") no-repeat center center;
+    background: url("../assets/logos/GGBC%20_Logo_Gold2.png") no-repeat center center;
     background-size: cover;
     height: 50px;
     aspect-ratio: 240 / 71;
@@ -79,7 +79,7 @@
     align-items: center;
 }
 
-.footerInfo {
+.footerInfoContainer {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -88,6 +88,10 @@
     gap: 10px;
     padding-left: 50px;
     margin: 3px 0;
+}
+
+.footerInfo {
+    margin: 0;
     color: var(--text-color);
 }
 
@@ -96,6 +100,11 @@
     width: 1em;
     vertical-align: left;
     color: var(--text-color);
+}
+
+#footerLocation {
+    margin-left: -3px;
+    margin-right: 3px;
 }
 
 #developerInfo {

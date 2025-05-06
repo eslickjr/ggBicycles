@@ -29,36 +29,36 @@
 
 @keyframes glideAcross {
     0% {
-        transform: translateX(0);
+        transform: translateX(-40px);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% - 80px));
     }
 }
 
 @keyframes glideOn {
     0% {
-        transform: translateX(100%);
+        transform: translateX(calc(100% - 40px));
     }
     100% {
-        transform: translateX(0);
+        transform: translateX(-80px);
     }
 }
 
 #landingTitleContainer {
     position: relative;
     width: 100%;
-    background: url("../assets/goldenGrove.png") no-repeat center center;
+    background: url("../assets/logos/black%20and%20white%20header%20image%20copy.png") no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
     aspect-ratio: 1 / .32;
     background-position: center bottom;
 }
 
 #landingTitle {
+    position: relative;
     color: var(--bg-first-color);
     font-family: "Lobster", sans-serif;
     font-optical-sizing: auto;
@@ -66,7 +66,9 @@
     text-shadow: 0 0 5px #000, 0 0 10px #000;
     font-size: 3em;
     font-weight: 300;
-    transform: translate(45%, 20%);
+    margin: 0;
+    left: 75%;
+    transform: translate(-25%, 15%);
 }
 
 #landingSummaryContainer {
@@ -152,7 +154,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 80%;
+    width: 100%;
     padding: 20px 0;
 }
 
@@ -268,7 +270,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    aspect-ratio: 1 / 0.5;
+    aspect-ratio: 1 / 0.75;
     padding: 40px;
     border-radius: 20px;
     margin: 20px 40px 60px 40px;
@@ -306,8 +308,8 @@
 }
 
 #landingPersonalizedContainer {
-    background: url("../assets/trail.png") no-repeat center center;
-    background-size: cover;
+    background: url("../assets/trail.png") no-repeat top left;
+    background-size: 110% 110%;
 }
 
 .landingWorkOverlay {
@@ -353,8 +355,9 @@
     background-color: var(--bg-third-color);
     color: white;
     border: 2px solid white;
-    transform: scale(1.05);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5), 0px 0px 10px rgba(0, 0, 0, .5);
+    /* transform: scale(1.05); */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    /* outline: 2px solid black; */
     /* margin-bottom: 64px; */
 }
 
@@ -376,9 +379,19 @@ body:has(#landingModalWrapper.active) {
     overflow: hidden;
 }
 
+body:has(#landingModalWrapper.active)::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200vh;
+    overflow-y: scroll;
+    /* pointer-events: none; */
+}
+
 #landingModalWrapper.active {
     visibility: visible;
-    animation: fadeIn 0.3s ease forwards;
 }
 
 #landingModalOverlay {
@@ -389,6 +402,10 @@ body:has(#landingModalWrapper.active) {
     top: 0;
     left: 0;
     z-index: 1;
+}
+
+#landingModalWrapper.active #landingModalContainer {
+    animation: fadeIn 0.3s ease forwards;
 }
 
 #landingModalContainer {
@@ -494,7 +511,7 @@ body:has(#landingModalWrapper.active) {
     /* box-shadow: 0px 0px 5px rgba(255, 255, 255, .5), 0px 0px 10px rgba(255, 255, 255, .5); */
 }
 
-#landingReviewsWrapper {
+#landingReviewsArea {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -503,13 +520,21 @@ body:has(#landingModalWrapper.active) {
     margin-bottom: 60px;
 }
 
+#landingReviewsWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 #landingReviewsContainer {
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
+    padding: 20px 0;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -521,7 +546,7 @@ body:has(#landingModalWrapper.active) {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, var(--bg-first-color) 5%, transparent, var(--bg-first-color) 95%);
+    background: linear-gradient(to right, var(--bg-first-color) 5%, transparent 25%, transparent 75%, var(--bg-first-color) 95%);
     z-index: 3;
 }
 
@@ -529,16 +554,17 @@ body:has(#landingModalWrapper.active) {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: top;
+    flex: 1;
+    /* height: 100%; */
     width: 25%;
-    height: 100%;
     padding: 20px;
     margin: 0 20px;
     border-radius: 20px;
     transform: translateX(100%);
-    /* background: radial-gradient(at bottom left, var(--bg-first-color), var(--bg-second-color)); */
-    background-color: var(--bg-second-color);
+    background: linear-gradient(25deg, var(--bg-second-color) 40%, var(--bg-first-color));
+    /* background-color: var(--bg-second-color); */
     border: 2px solid white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5), 0px 0px 10px rgba(0, 0, 0, .5);
 }
 
 .landingReviewContainer.mainOnScreen {
@@ -549,9 +575,64 @@ body:has(#landingModalWrapper.active) {
     position: absolute;
     right: -40px;
     width: calc( 25% - 40px);
+    height: calc( 100% - 40px);
+    transform: translateX(-80px);
     animation: glideOn 8s linear infinite;   
 }
 
 .landingReviewTitle {
     color: white;
+}
+
+/* .landingReviewContainer:nth-child(2) {
+    transform: translateX(calc(-40px));
+} */
+
+/* .landingReviewContainer:nth-child(4) {
+    transform: translateX(-129%);
+    animation: glideAcross 8s linear infinite;
+} */
+
+#landingReviewBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.landingReviewBtn {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 1.2em;
+    font-weight: 900;
+    padding: 20px 40px;
+    border-radius: 100px;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-bottom: 60px;
+    box-shadow: none;
+    text-decoration: none;
+    
+    font-family: "Cactus Classical Serif", serif;
+    transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease;
+}
+
+.landingReviewBtn:hover {
+    background-color: var(--bg-third-color);
+    color: white;
+    border: 2px solid white;
+    /* transform: scale(1.05); */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    /* margin-bottom: 64px; */
+}
+
+.compLogo {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1 / 1;
 }

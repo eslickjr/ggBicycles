@@ -18,14 +18,13 @@ export default function Projects() {
                   return newOnScreen;
                 });
                 observer.unobserve(entry.target);
-                const timeout = setTimeout(() => {
+                setTimeout(() => {
                   setOnScreen(prev => {
                     const newOnScreen = [...prev];
                     newOnScreen[index] = "onScreen";
                     return newOnScreen;
                   });
                 }, 1000);
-                return clearTimeout(timeout); // Ensure timeout is cleared
               }
             });
           }
@@ -40,6 +39,10 @@ export default function Projects() {
 
       return () => {
         elements.forEach(el => observer.unobserve(el));
+        onScreenRef.current.forEach(([el]) => {
+          observer.unobserve(el);
+        });
+        setOnScreen(Array(4).fill("")); // Reset onScreen state
       };
     }
     , []);

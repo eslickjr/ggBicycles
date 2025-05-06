@@ -1,8 +1,11 @@
 import "../styles/Landing.css";
 
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 export default function Landing() {
+  const form = useRef<HTMLFormElement | null>(null);
   const imgCarouselRef = useRef([true, true, true, true, false, false, false, false]);
   const imgCarouselIndex = useRef(3);
   const upNext = useRef(4);
@@ -15,6 +18,7 @@ export default function Landing() {
   const limit = 7;
   const [reviewsOnScreen, setReviewsOnScreen] = useState([0, 1, 2, 3, 4]);
   const reviewIndex = useRef(0);
+  const timeSent = new Date().toLocaleString();
 
   const reviewData = [
     {
@@ -153,6 +157,27 @@ export default function Landing() {
     emailInput.value = emailInput.value.replace(/[^a-zA-Z0-9@._-]/g, "");
   }
 
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs.sendForm(
+        'service_v635jdv',
+        'template_2dygy7n',
+        form.current,
+        'DsniDbEqda8GKVTuw'
+      ).then((result) => {
+        console.log(result.text);
+        setModal(false);
+      }, (error) => {
+        console.log(error.text);
+        alert("An error occurred while sending the message. Please try again later.");
+      });
+    } else {
+      alert("Form reference is not available. Please try again.");
+    }
+  }
+
   const reviewsList = () => {
     return reviewsOnScreen.map((data, index) => {
         return (
@@ -219,9 +244,9 @@ export default function Landing() {
         </div>
       </div>
       <div id="landingApptContainer">
-        <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true); scrollRef.current = window.scrollY;}} />
+        <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true)}} />
       </div>
-      <div id="landingReviewsWrapper">
+      <div id="landingReviewsArea">
         <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What Our Customers Say</h2>
         <div id="landingReviewsWrapper">
           <div id="landingReviewsContainer">
@@ -231,11 +256,24 @@ export default function Landing() {
             {/* <p id="landingReviewsSummary">We take pride in our work and our customers love us for it. Check out some of the great things they have to say about us!</p> */}
           </div>
         </div>
+        <h2 id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Let us know what you think</h2>
+        <div id="landingReviewBtnContainer">
+          <Link id="landingGoogleBtn" className="landingReviewBtn" to="https://www.google.com/search?q=golden+grove+bicycles&sca_esv=6f4cffb8fcc6cffb&sxsrf=AHTn8zrrk5jcha03FlEWHVme9gyitiprzA%3A1746549437436&source=hp&ei=vToaaLSuGOvfkPIPzfLrKA&iflsig=ACkRmUkAAAAAaBpIzcXd8oxOaLXv0pUNLOyCL4fZh_jB&oq=golden+gro&gs_lp=Egdnd3Mtd2l6Igpnb2xkZW4gZ3JvKgIIADIEECMYJzIEECMYJzIOEC4YgAQYxwEYjgUYrwEyCxAAGIAEGLEDGIMBMgUQLhiABDILEC4YgAQYxwEYrwEyBRAuGIAEMgsQLhiABBjHARivATIFEAAYgAQyBRAAGIAESPEPUABY9ghwAHgAkAEAmAGHAaABtQmqAQMxLjm4AQPIAQD4AQGYAgqgAs8JwgIKECMYgAQYJxiKBcICFBAuGIAEGJECGMcBGIoFGI4FGK8BwgILEC4YgAQYkQIYigXCAhEQLhiABBixAxjRAxiDARjHAcICCxAAGIAEGJECGIoFwgIIEAAYgAQYsQPCAgsQLhiABBixAxiDAcICDhAuGIAEGLEDGNEDGMcBwgIIEC4YgAQYsQPCAg4QLhiABBixAxjHARivAZgDAJIHAzEuOaAHwqcBsgcDMS45uAfPCQ&sclient=gws-wiz#lrd=0x885839946d5aca79:0x664da6df808040bc,3,,,," target="_blank" rel="noopener noreferrer">
+            Leave a&nbsp;
+            <svg className="compLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            &nbsp;Review
+          </Link>
+          <Link id="landingYelpBtn" className="landingReviewBtn" to="https://www.yelp.com/writeareview/biz/acU0GygCCz1rdVNFKz74BA?return_url=%2Fbiz%2FacU0GygCCz1rdVNFKz74BA&review_origin=biz-details-war-button" target="_blank" rel="noopener noreferrer">
+            Leave a&nbsp;
+            <svg className="compLogo" xmlns="http://www.w3.org/2000/svg" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 228.097 228.097" ><g><path style={{fill:'#C1272D'}} d="M173.22,68.06c8.204,6.784,30.709,25.392,27.042,38.455c-1.696,5.867-8.434,7.746-13.43,9.579   c-11.505,4.171-23.33,7.471-35.339,9.9c-9.717,1.971-30.48,6.279-26.63-10.909c1.512-6.646,6.875-12.284,11.184-17.28   c8.846-10.404,17.876-21.405,28.555-29.93c0.871-0.688,1.925-0.871,2.842-0.733C169.232,66.41,171.386,66.502,173.22,68.06z"/><path style={{fill:'#C1272D'}} d="M161.119,205.197c-7.196-5.821-12.284-14.942-16.684-22.917c-4.309-7.7-11.092-17.876-12.238-26.813   c-2.337-18.38,24.292-7.333,31.947-4.675c10.175,3.575,37.447,7.517,34.422,23.421c-2.521,12.971-18.151,28.784-31.213,30.801   c-0.137,0.046-0.321,0-0.504,0c-0.046,0.046-0.092,0.092-0.137,0.137c-0.367,0.183-0.779,0.413-1.192,0.596   C163.961,206.573,162.449,206.252,161.119,205.197z"/><path style={{fill:'#C1272D'}} d="M101.58,157.896c14.484-6.004,15.813,10.175,15.721,19.984c-0.137,11.688-0.504,23.421-1.375,35.063   c-0.321,4.721-0.137,10.405-4.629,13.384c-5.546,3.667-16.225,0.779-21.955-1.008c-0.183-0.092-0.367-0.183-0.55-0.229   c-12.054-2.108-26.767-7.654-28.188-18.792c-0.138-1.283,0.367-2.429,1.146-3.3c0.367-0.688,0.733-1.329,1.146-1.925   c1.788-2.475,3.85-4.675,5.913-6.921c3.483-5.179,7.242-10.175,11.229-14.988C85.813,172.197,92.917,161.471,101.58,157.896z"/><path style={{fill:'#C1272D'}} d="M103.689,107.661c-21.13-17.371-41.71-44.276-52.344-69.164   c-8.113-18.93,12.513-30.48,28.417-35.705c21.451-7.059,29.976-0.917,32.13,20.534c1.788,18.471,2.613,37.08,2.475,55.643   c-0.046,7.838,2.154,20.488-2.429,27.547c0.733,2.888-3.621,4.95-6.096,2.979c-0.367-0.275-0.733-0.642-1.146-0.963   C104.33,108.303,104.009,108.028,103.689,107.661z"/><path style={{fill:'#C1272D'}} d="M101.397,134.566c1.696,7.517-3.621,10.542-9.854,13.384c-11.092,4.996-22.734,8.984-34.422,12.284   c-6.784,1.879-17.188,6.371-23.742,1.375c-4.95-3.758-5.271-11.596-5.729-17.28c-1.008-12.696,0.917-42.993,18.517-44.276   c8.617-0.596,19.388,7.104,26.447,11.138c9.396,5.409,19.48,11.596,26.492,20.076C100.159,131.862,101.03,132.916,101.397,134.566z   "/></g></svg>
+            &nbsp;Review
+          </Link>
+        </div>
       </div>
       <div id="landingModalWrapper" className={modal ? "active" : ""}>
         <div id="landingModalOverlay" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
         <div id="landingModalContainer">
-          <form id="landingModal">
+          <form id="landingModal" ref={form} onSubmit={sendEmail}>
             <div id="landingModalCloseContainer">
               <h2 id="landingModalTitle">Book an Appointment</h2>
               <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
@@ -248,6 +286,7 @@ export default function Landing() {
             <input id="landingModalPhone" className="landingModalInput" type="tel" name="phone" value={aptPhone} onChange={handlePhoneChange} required />
             <label htmlFor="landingModalMessage"className="landingModalLabel">Message</label>
             <textarea id="landingModalMessage" className="landingModalTextArea" name="message" required />
+            <input type="hidden" name="time" value={timeSent} />
             <input id="landingModalSubmit" type="submit" value="Submit" />
           </form>
         </div>

@@ -16,50 +16,60 @@ export default function Landing() {
   const [modal, setModal] = useState(false);
   const [aptPhone, setAptPhone] = useState("");
   const limit = 7;
-  const [reviewsOnScreen, setReviewsOnScreen] = useState([0, 1, 2, 3, 4]);
+  const [mobile, setMobile] = useState(window.innerWidth <= window.innerHeight);
+  const visibleCount = mobile ? 1 : 3;
+  const [reviewsOnScreen, setReviewsOnScreen] = useState(Array.from({ length: visibleCount + 1 }, (_, i) => i));
   const reviewIndex = useRef(0);
+  const [onScreenIndex, setOnScreenIndex] = useState(0);
   const timeSent = new Date().toLocaleString();
+  const reviewListRef = useRef<(HTMLDivElement | null)>(null);
+  const cycleDuration = 8000;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMobile(window.innerWidth <= window.innerHeight);
+      setOnScreenIndex(0);
+      setReviewsOnScreen(Array.from({ length: visibleCount + 1 }, (_, i) => i));
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const reviewData = [
     {
-        name: "John Doe",
-        review: "Great service and friendly staff!",
-        rating: 5,
+        name: "Jeep Guy",
+        review: "Adam is the best I've seen I bought a new E-bike for myself for a Christmas gift. He did a much needed tuneup found out parts on my derailleur was bent from shipping and it wasn't assembled correctly from the factory I felt like something was wrong with the shifting and plus I was tired of Ghost 👻 pedaling at Pas.5 in 7th gear ⚙️ changed out the freewheel from 14-28 teeth to 11-28t now it hits 30 plus mph with no problem And the cadence is perfect...If you have the same issue let him upgrade it for you, check it out on YouTube. And I bet you this guy can build a bike with his eyes closed He's the picasso of bikes..."
     },
     {
-        name: "Jane Smith",
-        review: "Wide selection of bikes and accessories.",
-        rating: 5,
+        name: "Dom Crotty",
+        review: "Adam, the owner of Golden Grove Bicycle Company is a great guy! He loves bicycles. He's fair, honest and he does what he says he's going to do. He worked with me to purchase and recondition two older Specialized Allez bikes, getting me and my wife set-up with exactly what we wanted. He's flexible and can schedule-- as he runs his shop part-time. Clearly though, he loves working with bicycles and people that ride them. I wouldn't go anywhere else. Thank you, Adam",
     },
     {
-        name: "Alice Johnson",
-        review: "Knowledgeable staff and great prices.",
-        rating: 5,
+        name: "Mary Nash-Powell",
+        review: "I brought my grandson's bike in to have a flat tire fixed. He pointed out a few other issues that should be addressed. When we picked it up, the bike looked completely reconditioned. The price was very reasonable as well. Highly recommended.",
     },
     {
-        name: "Bob Brown",
-        review: "Had a great experience buying my first bike.",
-        rating: 5,
+        name: "Joshua Fetterolf",
+        review: "Adam was excellent! Fast and well-priced. He fixed the tire that I was there for and then went over the whole bike as a courtesy. Will definitely be back.",
     },
     {
         name: "Charlie Davis",
         review: "Highly recommend for all your biking needs!",
-        rating: 5,
     },
     {
-        name: "Diana Evans",
-        review: "The staff is very helpful and friendly.",
-        rating: 5,
+        name: "Alex Warren",
+        review: "I was recommended Adam by a mutual friend. I hadn’t ridden in years and knew absolutely nothing. Adam took a bike I had purchased used and really brought life back into it. He was conscious of my budget and helped me find a good balance between fixing and upgrading components. He didn’t shy away from my endless questions and made me feel great about the work being done. All that to say, he’s a phenomenal mechanic and you won’t be disappointed using him. As a direct result of his work I was able to put 200 miles on my bike in the first month with no mechanical issues and a very comfortable ride. Can’t ask for much more than that!",
     },
     {
-        name: "Ethan Foster",
-        review: "Best bike shop in town!",
-        rating: 5,
+        name: "Nancy Dalton",
+        review: "Dropped by to repair a bike as I couldn’t bring it in. Adam is honest and did just what he promised. Very reasonable fee. Highly recommend!",
     },
     {
-        name: "Fiona Green",
-        review: "I love my new bike!",
-        rating: 5,
+        name: "Jeff Kennedy",
+        review: "I went to Adam with a dropper post issue - he found the cable was bad likely due to improper install (which was no surprise considering I installed it). While he was making quick work of that fix we discussed a few other questions I had about the bike and he looked over everything for me. He ended up making adjustments to some of my hand controls for better access while riding, added air to my shocks and explained how much should be in there and how often I should check it, then he trued a wobbly wheel and brake rotor. This all would have cost me a lot of time and $$$ at any other bike shop but Adam was fast and the price was absolutely reasonable. Great work Adam I will definitely be coming back with all my bikes!",
     },
   ];
 
@@ -68,6 +78,7 @@ export default function Landing() {
       setLoaded(true);
     }, 10);
     const interval = setInterval(() => {
+      setImgTransition(true);
       // Check if the index + 1 is greater than the limit and if so, set it to 0
       imgCarouselIndex.current = imgCarouselIndex.current + 1 > limit ? 0 : imgCarouselIndex.current + 1;
       upNext.current = imgCarouselIndex.current - 4 < 0 ? (imgCarouselIndex.current - 4) + (limit + 1) : imgCarouselIndex.current - 4;
@@ -95,36 +106,36 @@ export default function Landing() {
         }
       });
       setImgCarousel(imgCarouselRef.current);
-      setImgTransition(true);
       setTimeout(() => {
         setImgTransition(false);
       }, 500);
     }, 3000);
 
     const reviewInterval = setInterval(() => {
-      reviewIndex.current = reviewIndex.current + 1 > reviewData.length - 1 ? 0 : reviewIndex.current + 1;
-      setReviewsOnScreen(prevReviews => {
-        const newReviews = prevReviews.map((_, index) => {
-          if (reviewIndex.current <= reviewData.length - 5) {
-            return reviewIndex.current + index;
-          } else {
-            if (index + reviewIndex.current > reviewData.length - 1) {
-              return index + reviewIndex.current - reviewData.length;
-            } else {
-              return index + reviewIndex.current;
-            }
-          }
-        });
+      setOnScreenIndex(prev => {
+        const newOnScreen = (prev + 1) % (visibleCount + 1);
 
-        console.log(reviewIndex.current);
-        console.log(newReviews);
-        return newReviews;
+          setReviewsOnScreen(prevScreen => {
+            const updated  = [...prevScreen];
+            
+            reviewIndex.current = (reviewIndex.current + 1) % reviewData.length;
+            updated[prev] = (reviewIndex.current + visibleCount) % reviewData.length;
+
+            return updated;
+          });
+          return newOnScreen;
       });
-    }, 8000);
+    }, cycleDuration);
+
+    // reviewInterval();
+    // const animationInterval = setInterval((reviewInterval), 8040);
+
 
     return () => {
       clearInterval(interval);
       clearInterval(reviewInterval);
+      // clearInterval(animationInterval);
+      // clearInterval(animationInterval);
       clearTimeout(timeout);
       setLoaded(false);
     }
@@ -180,24 +191,21 @@ export default function Landing() {
 
   const reviewsList = () => {
     return reviewsOnScreen.map((data, index) => {
-        return (
-          <div key={index} className={`landingReviewContainer ${index === 4 ? "lastOnScreen" : "mainOnScreen"}`}>
-            <h2 className="landingReviewTitle">{reviewData[data].name}</h2>
-            <div className="ratingContainer">
-              {Array.from({ length: reviewData[data].rating }).map((_, i) => (
-                <span key={i} className="star">⭐</span>
-              ))}
-            </div>
-            <p className="landingReviewSummary">{reviewData[data].review}</p>
-          </div>
-        );
+      if (index === reviewsOnScreen.length - 1) return null;
+      return (
+        <div key={index} className={`landingReviewContainer ${index >= onScreenIndex && index < onScreenIndex + 4 ? `reviewOnScreen` : "reviewOffScreen"} ${onScreenIndex + 4 === index ? "reviewUpNext" : ""}`}>
+          <p className="landingReviewTitle">{reviewData[data].name}</p>
+          <p className="ratingContainer">{"⭐".repeat(5)}</p>
+          <p className="landingReviewSummary">{reviewData[data].review}</p>
+        </div>
+      );
     });  
   }
 
   return (
     <div id="landing">
       <div id="landingTitleContainer">
-        <h1 id="landingTitle">Speedy Repairs, Smooth Rides.</h1>
+        <h1 id="landingTitle">Speedy Repairs, {mobile && <><br /><span>&emsp;&emsp;</span></>}Smooth Rides.</h1>
         {/* Ride Local. Repair Local. */}
       </div>
       {/* <div id="landingSummaryContainer">
@@ -229,14 +237,14 @@ export default function Landing() {
       </div>
       <div id="landingMaintenanceContainer">
         <div id="landingInspectionsWrapper" className="landingWorkWrapper">
-          <h2 id="landingInspectionsTitle" className={loaded ? "loaded" : ""}>Comprehensive Inspections</h2>
+          <h2 id="landingInspectionsTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Comprehensive Inspections</h2>
           <div id="landingInspectionsContainer" className="landingWorkContainer">
             <div id="landingInspectionsOverlay" className="landingWorkOverlay" />
             <p id="landingInspectionsSummary" className="landingWorkSummary">Our experienced technicians will thoroughly inspect your bike, identifying any issues or areas that need attention. We’ll provide a detailed report and recommendations to keep your ride in top shape.</p>
           </div>
         </div>
         <div id="landingPersonalizedWrapper" className="landingWorkWrapper">
-        <h2 id="landingPersonalizedTitle" className={loaded ? "loaded" : ""}>Personalized Maintenance</h2>
+        <h2 id="landingPersonalizedTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Personalized Maintenance</h2>
           <div id="landingPersonalizedContainer" className="landingWorkContainer">
             <div id="landingPersonalizedOverlay" className="landingWorkOverlay" />
             <p id="landingPersonalizedSummary" className="landingWorkSummary">With our customized maintenance plans, we’ll ensure your bicycle receives the specialized care it needs, from regular tune-ups to comprehensive overhauls. Trust us to keep your bike running smoothly.</p>
@@ -249,11 +257,19 @@ export default function Landing() {
       <div id="landingReviewsArea">
         <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What Our Customers Say</h2>
         <div id="landingReviewsWrapper">
-          <div id="landingReviewsContainer">
-            <div id="landingReviewsOverlay" />
+          <div id="landingReviewsOverlay" />
+          <div id="landingReviewsContainer1" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
             {reviewsList()}
-
-            {/* <p id="landingReviewsSummary">We take pride in our work and our customers love us for it. Check out some of the great things they have to say about us!</p> */}
+          </div>
+          <div id="landingReviewsContainer2" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
+            <div key={visibleCount + 1} className={`landingReviewContainer ${visibleCount >= onScreenIndex && visibleCount < onScreenIndex + 4 ? `reviewOnScreen` : "reviewOffScreen"} ${onScreenIndex + 4 === visibleCount ? "reviewUpNext" : ""}`}>
+              <p className="landingReviewTitle">{reviewData[reviewsOnScreen[visibleCount]].name}</p>
+              <p className="ratingContainer">{"⭐".repeat(5)}</p>
+              <p className="landingReviewSummary">{reviewData[reviewsOnScreen[visibleCount]].review}</p>
+            </div>
+          </div>
+          <div id="landingReviewsContainer3" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
+            {reviewsList()}
           </div>
         </div>
         <h2 id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Let us know what you think</h2>

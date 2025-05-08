@@ -29,19 +29,28 @@
 
 @keyframes glideAcross {
     0% {
-        transform: translateX(-40px);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(calc(-100% - 80px));
+        transform: translateX(calc(-133%));
     }
 }
 
 @keyframes glideOn {
     0% {
-        transform: translateX(calc(100% - 40px));
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-80px);
+        transform: translateX(-400%);
+    }
+}
+
+@keyframes glideReset {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-133%);
     }
 }
 
@@ -71,58 +80,13 @@
     transform: translate(-25%, 15%);
 }
 
-#landingSummaryContainer {
-    padding: 20px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--bg-second-color);
-    margin-bottom: 60px;
-}
-
-
-#landingSummary {
-    width: 60%;
-    font-weight: 1000;
-    padding: 0 100px 0 40px;
-    font-style: italic;
-    font-size: 1.5em;
-}
-
-#landingSummaryContact {
-    width: 40%;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-
-.landingSummaryInfo {
-    padding: 0;
-    margin: 3px 0;
-    font-family: "Cactus Classical Serif", serif;
-    color: white;
-}
-
-#landingComeVisit {
-    padding: 0;
-    font-weight: 900;
-}
-
-#landingSummaryPhone, #landingSummaryAddress {
-    padding: 0;
-    text-decoration: underline;
-}
-
 #landingRepairContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 4.5vw;
 }
 
 /* #landingRepairTitle {
@@ -140,8 +104,8 @@
     padding: 0 20px;
     border: 2px solid white;
     border-radius: 20px;
-    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .7)) drop-shadow(0px 10px 10px rgba(0, 0, 0, .7));
-    margin: 20px auto 60px auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .7), 0px 10px 10px rgba(0, 0, 0, .7);
+    margin: 20px auto 4.5vw auto;
     /* background-color: var(--bg-second-color); */
     /* background: linear-gradient(to right, var(--bg-first-color), var(--bg-second-color) 30%, var(--bg-second-color) 70%, var(--bg-first-color)); */
     background: radial-gradient(at top right, var(--bg-first-color), var(--bg-second-color));
@@ -252,7 +216,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 4.5vw;
 }
 
 .landingWorkWrapper {
@@ -273,7 +237,7 @@
     aspect-ratio: 1 / 0.75;
     padding: 40px;
     border-radius: 20px;
-    margin: 20px 40px 60px 40px;
+    margin: 20px 40px 4.5vw 40px;
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .7)) drop-shadow(0px 10px 10px rgba(0, 0, 0, .7));
     transition: transform 0.3s ease-in-out;
 }
@@ -281,6 +245,8 @@
 .landingWorkContainer:hover {
     transform: scale(1.05);
 }
+
+
 
 /* #landingInspectionsTitle {
     opacity: 0;
@@ -334,7 +300,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 4.5vw;
 }
 
 #landingApptButton {
@@ -346,7 +312,7 @@
     border-radius: 100px;
     border: 2px solid black;
     cursor: pointer;
-    margin-bottom: 60px;
+    margin-bottom: 4.5vw;
     box-shadow: none;
     transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease;
 }
@@ -507,8 +473,6 @@ body:has(#landingModalWrapper.active)::before {
     background-color: var(--text-color);
     color: white;
     border: 2px solid white;
-    /* transform: scale(1.05); */
-    /* box-shadow: 0px 0px 5px rgba(255, 255, 255, .5), 0px 0px 10px rgba(255, 255, 255, .5); */
 }
 
 #landingReviewsArea {
@@ -517,26 +481,47 @@ body:has(#landingModalWrapper.active)::before {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 4.5vw;
 }
 
 #landingReviewsWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-#landingReviewsContainer {
     position: relative;
     display: flex;
     flex-direction: row;
+    justify-content: left;
     align-items: stretch;
+    /* Ensure child elements have no explicit height or set height to auto */
     width: 100%;
-    padding: 20px 0;
-    margin: 0 auto;
     overflow: hidden;
+}
+
+.landingReviewsContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0;
+    margin: 0;
+    flex: 1 0 auto;
+}
+
+#landingReviewsContainer1, #landingReviewsContainer3 {
+    width: 100%;
+}
+
+#landingReviewsContainer2 {
+    width: 33%;
+}
+
+#landingReviewsContainer1 {
+    animation: glideAcross 32s linear infinite;
+}
+
+#landingReviewsContainer2 {
+    animation: glideOn 32s linear infinite;
+}
+
+#landingReviewsContainer3 {
+    animation: glideReset 32s linear infinite;
 }
 
 #landingReviewsOverlay {
@@ -548,50 +533,61 @@ body:has(#landingModalWrapper.active)::before {
     height: 100%;
     background: linear-gradient(to right, var(--bg-first-color) 5%, transparent 25%, transparent 75%, var(--bg-first-color) 95%);
     z-index: 3;
+    pointer-events: none;
 }
 
 .landingReviewContainer {
+    positioN: relative;
     display: flex;
     flex-direction: column;
     justify-content: left;
-    flex: 1;
-    /* height: 100%; */
-    width: 25%;
-    padding: 20px;
+    padding: 0 20px;
     margin: 0 20px;
-    border-radius: 20px;
-    transform: translateX(100%);
-    background: linear-gradient(25deg, var(--bg-second-color) 40%, var(--bg-first-color));
-    /* background-color: var(--bg-second-color); */
+    border-radius: 4.5vw;
+    aspect-ratio: 1 / .75;
+    overflow: hidden;
+    height: 100%;
+    cursor: default;
+    background: linear-gradient(135deg, var(--bg-second-color) 40%, var(--bg-first-color));
     border: 2px solid white;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .5), 0px 0px 10px rgba(0, 0, 0, .5);
+    transition: transform 0.3s ease;
 }
 
-.landingReviewContainer.mainOnScreen {
-    animation: glideAcross 8s linear infinite;   
+#landingReviewsContainer1 .landingReviewContainer, #landingReviewsContainer3 .landingReviewContainer {
+    width: 33%;
 }
 
-.landingReviewContainer.lastOnScreen {
-    position: absolute;
-    right: -40px;
-    width: calc( 25% - 40px);
-    height: calc( 100% - 40px);
-    transform: translateX(-80px);
-    animation: glideOn 8s linear infinite;   
+#landingReviewsContainer2 .landingReviewContainer {
+    width: 100%;
+}
+
+.landingReviewContainer:hover {
+    transform: scale(1.05);
 }
 
 .landingReviewTitle {
     color: white;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align: center;
 }
 
-/* .landingReviewContainer:nth-child(2) {
-    transform: translateX(calc(-40px));
-} */
+.ratingContainer {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
 
-/* .landingReviewContainer:nth-child(4) {
-    transform: translateX(-129%);
-    animation: glideAcross 8s linear infinite;
-} */
+.landingReviewSummary {
+    margin-top: 5px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 9; /* Doesn't work without -webkit- prefix */
+    -webkit-line-clamp: 9; /* Number of lines to show */
+}
 
 #landingReviewBtnContainer {
     display: flex;
@@ -614,7 +610,7 @@ body:has(#landingModalWrapper.active)::before {
     border-radius: 100px;
     border: 2px solid black;
     cursor: pointer;
-    margin-bottom: 60px;
+    margin-bottom: 4.5vw;
     box-shadow: none;
     text-decoration: none;
     
@@ -626,13 +622,122 @@ body:has(#landingModalWrapper.active)::before {
     background-color: var(--bg-third-color);
     color: white;
     border: 2px solid white;
-    /* transform: scale(1.05); */
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
-    /* margin-bottom: 64px; */
 }
 
 .compLogo {
     width: 32px;
     height: 32px;
     aspect-ratio: 1 / 1;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    @keyframes glideAcross {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-200%);
+        }
+    }
+    
+    @keyframes glideOn {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-200%);
+        }
+    }
+    
+    @keyframes glideReset {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-200%);
+        }
+    }
+
+    #landingTitleContainer {
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    #landingTitle {
+        transform: translate(0, 0);
+        left: 0;
+        font-size: 2em;
+    }
+
+    #landingRepairImageWrapper {
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        background: var(--bg-first-color);
+        padding: 0;
+        box-shadow: none;
+    }
+
+    #landingRepairSummary {
+        color: black;
+    }
+
+    .lrImage {
+        width: 40%;
+        margin: 10px;
+    }
+
+    #landingMaintenanceContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .landingMaintenanceTitle {
+        text-align: center;
+    }
+
+    .landingWorkWrapper {
+        width: 90%;
+    }
+
+    .landingWorkContainer {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    #landingApptButton {
+        font-size: 1em;
+        padding: 15px 30px;
+    }
+
+    #landingReviewsContainer2 {
+        width: 100%;
+    }
+
+    #landingReviewsContainer1 {
+        animation: glideAcross 16s linear infinite;
+    }
+    
+    #landingReviewsContainer2 {
+        animation: glideOn 16s linear infinite;
+    }
+    
+    #landingReviewsContainer3 {
+        animation: glideReset 16s linear infinite;
+    }
+
+    #landingReviewsContainer1 .landingReviewContainer, #landingReviewsContainer3 .landingReviewContainer {
+        width: 100%;
+    }
+
+    .landingReviewContainer {
+        width: 90%;
+    }
+
+    #landingReviewBtnContainer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }

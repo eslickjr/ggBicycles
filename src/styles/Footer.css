@@ -119,3 +119,26 @@
     margin: 0;
     font-weight: 100;
 }
+
+@media (max-aspect-ratio: 1/1) {
+    #footerInfoContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #footerSocialMedias {
+        margin-bottom: 20px;
+    }
+
+    #footerContact {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    #developerInfo {
+        text-align: center;
+    }
+}

@@ -35,7 +35,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     background: url("../assets/logos/GGBC%20_Logo_Gold2.png") no-repeat center center;
     background-size: cover;
     height: 50px;
@@ -100,5 +99,29 @@
 
 .nav-link:not(.active):hover::after {
     opacity: 1;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    #theHead {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+        align-items: center;
+    }
+
+    #headerLogo {
+        position: relative;
+        left: 0;
+        transform: translateX(0);
+        height: 25px;
+    }
+
+    #theNav {
+        gap: 0px;
+    }
+
+    .nav-link {
+        padding: 17px 0;
+    }
 }
 

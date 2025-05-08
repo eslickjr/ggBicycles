@@ -24,7 +24,7 @@
 }
 
 #projectsContainer {
-    padding-top: 120px;
+    padding-top: 9vw;
 }
 
 .projWrapper {
@@ -45,14 +45,14 @@
     justify-content: center;
     align-items: stretch;
     width: calc(100% + 220px);
-    margin: 120px -110px;
+    margin: 9vw -110px;
     transition: transform 0.3s ease;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
 }
 
 .projWrapper:nth-child(odd) .projContainer {
-    transform: translateX(-100%);
+    transform: translateX(0);
     border-radius: 0 1000px 1000px 0;
     border-right: 2px solid white;
     background: linear-gradient(to bottom left, var(--bg-second-color), var(--bg-first-color));
@@ -63,27 +63,29 @@
         drop-shadow(40px 0px 20px rgba(0, 0, 0, 0.3)); */
 }
 
-.projWrapper:nth-child(odd) .projContainer:hover {
-    transform: translateX(50px);
-}
+@media (min-aspect-ratio: 1/1) {
+    .projWrapper:nth-child(odd) .projContainer:hover {
+        transform: translateX(50px);
+    }
 
-.projWrapper:nth-child(odd) .projContainer.animate {
-    animation: slideFromLeft 1s ease forwards;
-}
+    .projWrapper:nth-child(odd) .projContainer.animate {
+        animation: slideFromLeft 1s ease forwards;
+    }
 
-.projWrapper:nth-child(odd) .projContainer.onScreen {
-    transform: translateX(0);
-}
+    .projWrapper:nth-child(odd) .projContainer.onScreen {
+        transform: translateX(0);
+    }
 
-.projWrapper:nth-child(odd) .projContainer.onScreen:hover {
-    transform: translateX(50px);
+    .projWrapper:nth-child(odd) .projContainer.onScreen:hover {
+        transform: translateX(50px);
+    }
 }
 
 .projWrapper:nth-child(even) .projContainer {
     flex-direction: row-reverse;
     border-radius: 1000px 0 0 1000px;
     border-left: 2px solid white;
-    transform: translateX(100%);
+    transform: translateX(0);
     background: linear-gradient(to bottom right, var(--bg-second-color),
         var(--bg-first-color));
     box-shadow: -20px 0px 20px rgba(0, 0, 0, 0.5),
@@ -93,16 +95,18 @@
         drop-shadow(-40px 0px 20px rgba(0, 0, 0, 0.3)); */
 }
 
-.projWrapper:nth-child(even) .projContainer.animate {
-    animation: slideFromRight 1s ease forwards;
-}
+@media (min-aspect-ratio: 1/1) {
+    .projWrapper:nth-child(even) .projContainer.animate {
+        animation: slideFromRight 1s ease forwards;
+    }
 
-.projWrapper:nth-child(even) .projContainer.onScreen {
-    transform: translateX(0);
-}
+    .projWrapper:nth-child(even) .projContainer.onScreen {
+        transform: translateX(0);
+    }
 
-.projWrapper:nth-child(even) .projContainer.onScreen:hover {
-    transform: translateX(-50px);
+    .projWrapper:nth-child(even) .projContainer.onScreen:hover {
+        transform: translateX(-50px);
+    }
 }
 
 #projRepairContainer {
@@ -184,4 +188,90 @@
 .projText {
     text-align: left;
     line-height: 1.6;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    #projectsContainer {
+        padding-top: 0;
+    }
+
+    #projectsContainer .projWrapper {
+        width: 100%;
+        padding: 0;
+    }
+
+    #projectsContainer .projWrapper .projContainer .projTextContainer {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .projHeader {
+        text-align: center;
+        margin-top: 20px;
+        opacity: 0;
+        transform: translateY(-50px);
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .projHeader.onScreen {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .projText {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-50px);
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .projText.onScreen {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .projImageContainer {
+        padding: 20px;
+    }
+
+    .projImage {
+        opacity: 0;
+        transform: translateY(-50px);
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .projImage.onScreen {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #projectsContainer .projWrapper .projContainer .projImageContainer .projImage {
+        box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1),
+        0px 0px 10px rgba(255, 255, 255, 0.1), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    }
+
+    #projectsContainer .projWrapper .projContainer {
+        width: calc(100% + 0px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        margin: 9vw 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5),
+        0px 0px 10px rgba(0, 0, 0, 0.1), 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #projectsContainer .projWrapper .projContainer.animate {
+        animation: none;
+    }
+
+    #projectsContainer .projWrapper .projContainer.onScreen {
+        transform: translateX(0);
+    }
+    #projectsContainer .projWrapper .projContainer.onScreen:hover {
+        transform: translateX(0) scale(1.05);
+    }
 }

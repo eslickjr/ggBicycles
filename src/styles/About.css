@@ -1,5 +1,5 @@
 #aboutBackground {
-    padding: 120px 120px 120px 0;
+    padding: 9vw 9vw 9vw 0;
     background: url("./../assets/greyShop3.jpg") no-repeat center center;
     background-size: cover;
     width: 100%;
@@ -13,7 +13,7 @@
     align-items: center;
     gap: 20px;
     width: 100%;
-    padding: 120px 0 120px 0;
+    padding: 9vw 0 9vw 0;
 }
 
 #aboutParagraphContainer {
@@ -99,4 +99,41 @@
 #aboutImg:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    #aboutContainer {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #aboutParagraphContainer {
+        width: 100%;
+        margin-left: 0;
+        padding: 0;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5),
+        0px 0px 10px rgba(0, 0, 0, 0.5),
+        0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    #aboutParagraph {
+        padding: 40px 20px;
+        font-size: 1rem;
+    }
+    
+    #aboutParagraph::after, #aboutParagraph::before {
+        background: white;
+    }
+
+    #aboutImgContainer {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 4.5vw;
+        margin-top: 4.5vw;
+    }
+
+    #aboutImg {
+        width: calc(100% - 20px);
+    }
+    
 }

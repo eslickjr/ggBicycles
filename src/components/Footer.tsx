@@ -1,13 +1,29 @@
 import "../styles/Footer.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
+    const navigate = useNavigate();
+    const [mobile, setMobile] = useState(window.innerWidth <= window.innerHeight);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setMobile(window.innerWidth <= window.innerHeight);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <footer id="theFooter" className="footer">
             <div id="footerInfoContainer">
                 <div id="footerSocialMedias">
-                    <div id="footerLogo" />
+                    <div id="footerLogo" onClick={() => {navigate('/')}}/>
                     <div id="socialMediaContainer">
                         <Link to="https://www.facebook.com/GGBicycleCo" target="_blank" rel="noopener noreferrer">
                             <svg className="svg-inline--fa fa-facebook-f" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
@@ -34,7 +50,7 @@ export default function Footer() {
                 </div>
             </div>
             <p id="developerInfo">
-                Golden Grove Bicycle Company 2025 Design & Developed by&nbsp;
+                Golden Grove Bicycle Company 2025 Design{!mobile ? <span>&nbsp;&</span> : <br />} Developed by&nbsp;
                 <Link id="devLink" to="https://joshua-eslick.com/" target="_blank" rel="noopener noreferrer">Joshua Eslick</Link>
             </p>
         </footer>

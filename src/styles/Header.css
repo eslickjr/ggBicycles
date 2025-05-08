@@ -1,4 +1,13 @@
 #theHeadContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+}
+
+#theNavContainer {
     position: fixed;
     top: 0;
     z-index: 1000;
@@ -73,6 +82,9 @@
     font-weight: 500;
     font-size: .8rem;
     transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .nav-link.active {

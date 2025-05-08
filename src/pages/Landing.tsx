@@ -2,26 +2,22 @@ import "../styles/Landing.css";
 
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import emailjs from 'emailjs-com';
+import AppointmentModal from "../components/AppointmentModal";
 
 export default function Landing() {
-  const form = useRef<HTMLFormElement | null>(null);
   const imgCarouselRef = useRef([true, true, true, true, false, false, false, false]);
   const imgCarouselIndex = useRef(3);
   const upNext = useRef(4);
-  const scrollRef = useRef(-1);
   const [imgCarousel, setImgCarousel] = useState(imgCarouselRef.current);
   const [imgTransition, setImgTransition] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [modal, setModal] = useState(false);
-  const [aptPhone, setAptPhone] = useState("");
   const limit = 7;
   const [mobile, setMobile] = useState(window.innerWidth <= window.innerHeight);
   const [visibleCount, setVisibleCount] = useState(mobile ? 1 : 3);
   const [reviewsOnScreen, setReviewsOnScreen] = useState(Array.from({ length: visibleCount + 1 }, (_, i) => i));
   const reviewIndex = useRef(0);
   const [onScreenIndex, setOnScreenIndex] = useState(0);
-  const timeSent = new Date().toLocaleString();
   const reviewListRef = useRef<(HTMLDivElement | null)>(null);
   const cycleDuration = 8000;
 
@@ -142,54 +138,6 @@ export default function Landing() {
     }
   }, []);
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const nameInput = e.target as HTMLInputElement;
-    nameInput.value = nameInput.value.replace(/[^a-zA-Z\s]/g, "");
-  }
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let phone = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-    
-    
-    if (phone.length > 0) {
-      phone = '(' + phone;
-    }
-
-    if (phone.length > 4) {
-      phone = phone.slice(0, 4) + ') ' + phone.slice(4);
-    }
-
-    if (phone.length > 9) {
-      phone = phone.slice(0, 9) + '-' + phone.slice(9, 13);
-    }
-    
-    setAptPhone(phone);
-  }
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailInput = e.target as HTMLInputElement;
-    emailInput.value = emailInput.value.replace(/[^a-zA-Z0-9@._-]/g, "");
-  }
-
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (form.current) {
-      emailjs.sendForm(
-        'service_v635jdv',
-        'template_2dygy7n',
-        form.current,
-        'DsniDbEqda8GKVTuw'
-      ).then((result) => {
-        console.log(result.text);
-        setModal(false);
-      }, (error) => {
-        console.log(error.text);
-        alert("An error occurred while sending the message. Please try again later.");
-      });
-    } else {
-      alert("Form reference is not available. Please try again.");
-    }
-  }
-
   const reviewsList = () => {
     return reviewsOnScreen.map((data, index) => {
       if (index === reviewsOnScreen.length - 1) return null;
@@ -287,27 +235,7 @@ export default function Landing() {
           </Link>
         </div>
       </div>
-      <div id="landingModalWrapper" className={modal ? "active" : ""}>
-        <div id="landingModalOverlay" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
-        <div id="landingModalContainer">
-          <form id="landingModal" ref={form} onSubmit={sendEmail}>
-            <div id="landingModalCloseContainer">
-              <h2 id="landingModalTitle">Book an Appointment</h2>
-              {!mobile && <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false); scrollRef.current = -1;}}/>}
-            </div>
-            <label htmlFor="landingModalName" className="landingModalLabel">Name</label>
-            <input id="landingModalName" className="landingModalInput" type="text" name="name" onChange={handleNameChange} required />
-            <label htmlFor="landingModalEmail" className="landingModalLabel">Email</label>
-            <input id="landingModalEmail" className="landingModalInput" type="email" name="email" onChange={handleEmailChange} required />
-            <label htmlFor="landingModalPhone"className="landingModalLabel">Phone</label>
-            <input id="landingModalPhone" className="landingModalInput" type="tel" name="phone" value={aptPhone} onChange={handlePhoneChange} required />
-            <label htmlFor="landingModalMessage"className="landingModalLabel">Message</label>
-            <textarea id="landingModalMessage" className="landingModalTextArea" name="message" required />
-            <input type="hidden" name="time" value={timeSent} />
-            <input id="landingModalSubmit" type="submit" value="Submit" />
-          </form>
-        </div>
-      </div>
+      <AppointmentModal mobile={mobile} modal={modal} setModal={setModal} />
     </div>
   );
 }

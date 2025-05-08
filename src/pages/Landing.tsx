@@ -17,7 +17,7 @@ export default function Landing() {
   const [aptPhone, setAptPhone] = useState("");
   const limit = 7;
   const [mobile, setMobile] = useState(window.innerWidth <= window.innerHeight);
-  const visibleCount = mobile ? 1 : 3;
+  const [visibleCount, setVisibleCount] = useState(mobile ? 1 : 3);
   const [reviewsOnScreen, setReviewsOnScreen] = useState(Array.from({ length: visibleCount + 1 }, (_, i) => i));
   const reviewIndex = useRef(0);
   const [onScreenIndex, setOnScreenIndex] = useState(0);
@@ -30,6 +30,7 @@ export default function Landing() {
       setMobile(window.innerWidth <= window.innerHeight);
       setOnScreenIndex(0);
       setReviewsOnScreen(Array.from({ length: visibleCount + 1 }, (_, i) => i));
+      setVisibleCount(mobile ? 1 : 3);
     };
 
     window.addEventListener("resize", handleResize);
@@ -292,7 +293,7 @@ export default function Landing() {
           <form id="landingModal" ref={form} onSubmit={sendEmail}>
             <div id="landingModalCloseContainer">
               <h2 id="landingModalTitle">Book an Appointment</h2>
-              <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false); scrollRef.current = -1;}}/>
+              {!mobile && <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false); scrollRef.current = -1;}}/>}
             </div>
             <label htmlFor="landingModalName" className="landingModalLabel">Name</label>
             <input id="landingModalName" className="landingModalInput" type="text" name="name" onChange={handleNameChange} required />

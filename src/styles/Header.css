@@ -20,7 +20,7 @@
     transition: background-color 0.3s ease-in-out, border-bottom 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-#theHeadContainer.scrolled {
+#theNavContainer.scrolled {
     background-color: var(--bg-third-color);
     border-bottom: 1px solid #ccc;
     filter: none;

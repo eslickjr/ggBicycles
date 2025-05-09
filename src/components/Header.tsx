@@ -49,7 +49,7 @@ export default function Header() {
           <div id="headerLogo" onClick={handleClick} />
           <ul id="theNav">
             <li className="nav-item">
-              <div onClick={() => {setModal(true)}} className={'nav-link'}>BOOK</div>
+              <div onClick={() => {setModal(true)}} className={'nav-link'}>APPOINTMENTS</div>
             </li>
             <li className="nav-item">
               <Link
@@ -59,14 +59,14 @@ export default function Header() {
                 ABOUT
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 to="/Projects"
                 className={currentPage === '/Projects' ? 'nav-link active' : 'nav-link'}
               >
                 PROJECTS
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

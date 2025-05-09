@@ -8,8 +8,8 @@ export default function Landing() {
   const imgCarouselRef = useRef([true, true, true, true, false, false, false, false]);
   const imgCarouselIndex = useRef(3);
   const upNext = useRef(4);
-  const [imgCarousel, setImgCarousel] = useState(imgCarouselRef.current);
-  const [imgTransition, setImgTransition] = useState(false);
+  // const [imgCarousel, setImgCarousel] = useState(imgCarouselRef.current);
+  // const [imgTransition, setImgTransition] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [modal, setModal] = useState(false);
   const limit = 7;
@@ -100,7 +100,7 @@ export default function Landing() {
       setLoaded(true);
     }, 10);
     const interval = setInterval(() => {
-      setImgTransition(true);
+      // setImgTransition(true);
       // Check if the index + 1 is greater than the limit and if so, set it to 0
       imgCarouselIndex.current = imgCarouselIndex.current + 1 > limit ? 0 : imgCarouselIndex.current + 1;
       upNext.current = imgCarouselIndex.current - 4 < 0 ? (imgCarouselIndex.current - 4) + (limit + 1) : imgCarouselIndex.current - 4;
@@ -127,9 +127,9 @@ export default function Landing() {
           }
         }
       });
-      setImgCarousel(imgCarouselRef.current);
+      // setImgCarousel(imgCarouselRef.current);
       setTimeout(() => {
-        setImgTransition(false);
+        // setImgTransition(false);
       }, 500);
     }, 3000);
 
@@ -190,7 +190,7 @@ export default function Landing() {
             <Link id="landingSummaryAddress" className="landingSummaryInfo" to="https://www.google.com/maps/place/205+Kennedy+Ln,+Piedmont,+SC+29673" target="_blank" rel="noopener noreferrer">205 Kennedy Ln Piedmont, SC 29673</Link>
         </div>
       </div> */}
-      <div id="landingRepairContainer">
+      {/* <div id="landingRepairContainer">
         <h2 id="landingRepairTitle" className={loaded ? "loaded" : ""}>Expert Bicycle Repair Services</h2>
         <div id="landingRepairImageWrapper">
           <div id="landingRepairImageContainer">
@@ -208,7 +208,7 @@ export default function Landing() {
           </div>
           <p id="landingRepairSummary">I offer fast and efficient services tailored to your needs.</p>
         </div>
-      </div>
+      </div> */}
       <div id="landingMaintenanceContainer">
         <div id="landingInspectionsWrapper" className="landingWorkWrapper">
           <h2 id="landingInspectionsTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Comprehensive Inspections</h2>

@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 
+import '../styles/AppointmentModal.css';
+
 interface AppointmentModalProps {
     mobile: boolean;
     modal: boolean;

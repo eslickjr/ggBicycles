@@ -8,6 +8,11 @@ export default function Footer() {
     const [mobile, setMobile] = useState(window.innerWidth <= window.innerHeight);
 
     useEffect(() => {
+        const img1 = new Image();
+        img1.src = "../assets/logos/GGBC%20_Logo_Gold2.png";
+    }, []);
+
+    useEffect(() => {
         const handleResize = () => {
             setMobile(window.innerWidth <= window.innerHeight);
         };

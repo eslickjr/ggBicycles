@@ -12,6 +12,11 @@ export default function Header() {
   const Navigate = useNavigate();
 
   useEffect(() => {
+    const img1 = new Image();
+    img1.src = "../assets/logos/GGBC%20_Logo_Gold2.png";
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setScrolled(true);

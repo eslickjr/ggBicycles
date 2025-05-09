@@ -22,6 +22,31 @@ export default function Landing() {
   const cycleDuration = 8000;
 
   useEffect(() => {
+    const img1 = new Image();
+    img1.src = "../assets/logos/black%20and%20white%20header%20image%20copy.png";
+    const img2 = new Image();
+    img2.src = "../assets/chainSpray.jpg";
+    const img3 = new Image();
+    img3.src = "../assets/bmx.png";
+    const img4 = new Image();
+    img4.src = "../assets/sunsetRide.jpg";
+    const img5 = new Image();
+    img5.src = "../assets/mountainBike.png";
+    const img6 = new Image();
+    img6.src = "../assets/kids.png";
+    const img7 = new Image();
+    img7.src = "../assets/tandem.png";
+    const img8 = new Image();
+    img8.src = "../assets/sunsetSil.png";
+    const img9 = new Image();
+    img9.src = "../assets/mountainBike2.png";
+    const img10 = new Image();
+    img10.src = "../assets/logos/adam%20shop.jpg";
+    const img11 = new Image();
+    img11.src = "../assets/trail.png";
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setMobile(window.innerWidth <= window.innerHeight);
       setOnScreenIndex(0);
@@ -181,7 +206,7 @@ export default function Landing() {
             <div id="landingRepairImage9" className={`lrImage lrImg1 ${imgCarousel[1] && imgCarouselIndex.current <= 2 ? "lriOnScreen" : "lriOffScreen"} ${imgTransition ? "activeM" : ""} ${upNext.current === 1 ? "upNext" : ""}`} />
             <div id="landingRepairImage10" className={`lrImage lrImg2 ${imgCarousel[2] && imgCarouselIndex.current <= 2 ? "lriOnScreen" : "lriOffScreen"} ${imgTransition ? "activeM" : ""} ${upNext.current === 2 ? "upNext" : ""}`} />
           </div>
-          <p id="landingRepairSummary">We offer fast and efficient services tailored to your needs.</p>
+          <p id="landingRepairSummary">I offer fast and efficient services tailored to your needs.</p>
         </div>
       </div>
       <div id="landingMaintenanceContainer">
@@ -189,14 +214,14 @@ export default function Landing() {
           <h2 id="landingInspectionsTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Comprehensive Inspections</h2>
           <div id="landingInspectionsContainer" className="landingWorkContainer">
             <div id="landingInspectionsOverlay" className="landingWorkOverlay" />
-            <p id="landingInspectionsSummary" className="landingWorkSummary">Our experienced technicians will thoroughly inspect your bike, identifying any issues or areas that need attention. We’ll provide a detailed report and recommendations to keep your ride in top shape.</p>
+            <p id="landingInspectionsSummary" className="landingWorkSummary">I'll thoroughly inspect your bike, identifying any issues or areas that need attention. I’ll provide a detailed report and recommendations to keep your ride in top shape.</p>
           </div>
         </div>
         <div id="landingPersonalizedWrapper" className="landingWorkWrapper">
         <h2 id="landingPersonalizedTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Personalized Maintenance</h2>
           <div id="landingPersonalizedContainer" className="landingWorkContainer">
             <div id="landingPersonalizedOverlay" className="landingWorkOverlay" />
-            <p id="landingPersonalizedSummary" className="landingWorkSummary">With our customized maintenance plans, we’ll ensure your bicycle receives the specialized care it needs, from regular tune-ups to comprehensive overhauls. Trust us to keep your bike running smoothly.</p>
+            <p id="landingPersonalizedSummary" className="landingWorkSummary">With my customized maintenance plans, I’ll ensure your bicycle receives the specialized care it needs, from regular tune-ups to comprehensive overhauls. Trust me to keep your bike running smoothly.</p>
           </div>
         </div>
       </div>
@@ -204,7 +229,7 @@ export default function Landing() {
         <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true)}} />
       </div>
       <div id="landingReviewsArea">
-        <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What Our Customers Say</h2>
+        <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What My Customers Say</h2>
         <div id="landingReviewsWrapper">
           <div id="landingReviewsOverlay" />
           <div id="landingReviewsContainer1" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
@@ -221,7 +246,7 @@ export default function Landing() {
             {reviewsList()}
           </div>
         </div>
-        <h2 id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Let us know what you think</h2>
+        <h2 id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Let me know what you think!</h2>
         <div id="landingReviewBtnContainer">
           <Link id="landingGoogleBtn" className="landingReviewBtn" to="https://www.google.com/search?q=golden+grove+bicycles&sca_esv=6f4cffb8fcc6cffb&sxsrf=AHTn8zrrk5jcha03FlEWHVme9gyitiprzA%3A1746549437436&source=hp&ei=vToaaLSuGOvfkPIPzfLrKA&iflsig=ACkRmUkAAAAAaBpIzcXd8oxOaLXv0pUNLOyCL4fZh_jB&oq=golden+gro&gs_lp=Egdnd3Mtd2l6Igpnb2xkZW4gZ3JvKgIIADIEECMYJzIEECMYJzIOEC4YgAQYxwEYjgUYrwEyCxAAGIAEGLEDGIMBMgUQLhiABDILEC4YgAQYxwEYrwEyBRAuGIAEMgsQLhiABBjHARivATIFEAAYgAQyBRAAGIAESPEPUABY9ghwAHgAkAEAmAGHAaABtQmqAQMxLjm4AQPIAQD4AQGYAgqgAs8JwgIKECMYgAQYJxiKBcICFBAuGIAEGJECGMcBGIoFGI4FGK8BwgILEC4YgAQYkQIYigXCAhEQLhiABBixAxjRAxiDARjHAcICCxAAGIAEGJECGIoFwgIIEAAYgAQYsQPCAgsQLhiABBixAxiDAcICDhAuGIAEGLEDGNEDGMcBwgIIEC4YgAQYsQPCAg4QLhiABBixAxjHARivAZgDAJIHAzEuOaAHwqcBsgcDMS45uAfPCQ&sclient=gws-wiz#lrd=0x885839946d5aca79:0x664da6df808040bc,3,,,," target="_blank" rel="noopener noreferrer">
             Leave a&nbsp;

@@ -1,7 +1,7 @@
-# myPortfolio
+# Golden Grove Bicycles
   
   ## Description
-  This a portfolio that displays my active projects, resume, contact information, and a brief about statement for me. I built this so people could access and see my work through my portfolio instead of having to track me through github.
+  This a website for a locally owned bike shop that does repairs and maintenance.
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
@@ -10,9 +10,9 @@
   - [License](#license)
   - [Questions](#questions)
   ## Installation
-  They would need to download the file and type npm install and then type npm run dev. This would allow them to access the localhost or they could use the website https://flahlesportfolio.netlify.app/ to access my active website.
+  They would need to download the file and type npm install and then type npm run dev. This would allow them to access the localhost or they could use the website https://goldengrovebicycles.com to access their active website.
   ## Usage
-  You can just follow the links in the navbar to view my portfolio, about, contact, or resume, and retreive the desired information. If on the portfolio page, you can click view project to be directed to that git repository. You can use the contact page to reach out to me. My github is linked in the footer.
+  You can just follow the links in the navbar to view the landing page, about, or to book an appointment. You can use the contact information in the footer to reach out to Golden Grove with any questions.
   ## Contribution
   N/A.
   ## Test

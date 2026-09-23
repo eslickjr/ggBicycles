@@ -68,7 +68,8 @@ export default function AppointmentModal({ mobile, modal, setModal }: Appointmen
                 <form id="landingModal" ref={form} onSubmit={sendEmail}>
                     <div id="landingModalCloseContainer">
                         <h2 id="landingModalTitle">Book an Appointment</h2>
-                        {!mobile && <input id="landingModalClose" type="button" value="X" onClick={() => {setModal(false)}}/>}
+                        <p id="landingModalSubtitle">Tell me a little about your bike and I'll reach out to schedule a time.</p>
+                        <input id="landingModalClose" className={mobile ? "mobile" : ""} type="button" value={"\u00d7"} aria-label="Close" onClick={() => {setModal(false)}}/>
                     </div>
                     <label htmlFor="landingModalName" className="landingModalLabel">Name</label>
                     <input id="landingModalName" className="landingModalInput" type="text" name="name" onChange={handleNameChange} required />
@@ -79,7 +80,7 @@ export default function AppointmentModal({ mobile, modal, setModal }: Appointmen
                     <label htmlFor="landingModalMessage"className="landingModalLabel">Message</label>
                     <textarea id="landingModalMessage" className="landingModalTextArea" name="message" required />
                     <input type="hidden" name="time" value={new Date().toLocaleTimeString()} />
-                    <input id="landingModalSubmit" type="submit" value="Submit" />
+                    <input id="landingModalSubmit" className="btn btn-primary" type="submit" value="Send Request" />
                 </form>
             </div>
         </div>

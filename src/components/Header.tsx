@@ -46,17 +46,22 @@ export default function Header() {
     <header id="theHeadContainer">
       <div id="theNavContainer" className={scrolled ? 'scrolled' : ''}>
         <div id="theHead">
-          <div id="headerLogo" onClick={handleClick} />
+          <div id="headerLogo" role="link" aria-label="Golden Grove Bicycle Co. home" onClick={handleClick} />
           <ul id="theNav">
             <li className="nav-item">
-              <div onClick={() => {setModal(true)}} className={'nav-link'}>APPOINTMENTS</div>
+              <Link
+                to="/"
+                className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
+              >
+                Home
+              </Link>
             </li>
             <li className="nav-item">
               <Link
                 to="/About"
                 className={currentPage === '/About' ? 'nav-link active' : 'nav-link'}
               >
-                ABOUT
+                About
               </Link>
             </li>
             {/* <li className="nav-item">
@@ -64,9 +69,14 @@ export default function Header() {
                 to="/Projects"
                 className={currentPage === '/Projects' ? 'nav-link active' : 'nav-link'}
               >
-                PROJECTS
+                Projects
               </Link>
             </li> */}
+            <li className="nav-item">
+              <button type="button" onClick={() => {setModal(true)}} className="btn btn-primary nav-cta">
+                {mobile ? 'Book' : 'Book Appointment'}
+              </button>
+            </li>
           </ul>
         </div>
       </div>

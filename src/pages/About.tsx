@@ -11,9 +11,15 @@ export default function About() {
 
     return (
         <section id="about">
-            <div id="aboutBackground" />
+            <div id="aboutBackground">
+                <div id="aboutBackgroundInner">
+                    <h2 id="aboutBannerTitle">About Golden Grove</h2>
+                </div>
+            </div>
             <div id="aboutContainer">
                 <div id="aboutParagraphContainer">
+                    <span className="eyebrow">Meet the Owner</span>
+                    <h1 id="aboutTitle" className="sectionTitle">Adam Del Vecchio</h1>
                     <p id="aboutParagraph">Hi, I'm Adam Del Vecchio, the proud owner of Golden Grove Bicycle, your neighborhood bike shop. I'm a lifelong cycling enthusiast with a passion for helping people. Whether it's for commuting, weekend trails, or your kid’s first bike. At Golden Grove, I believe in honest service, quality gear, and supporting our local cycling community. Stop by and say hello—I'm always happy to talk bikes!</p>
                 </div>
                 <div id="aboutImgContainer">

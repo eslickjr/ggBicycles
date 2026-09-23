@@ -188,6 +188,7 @@
 .projText {
     text-align: left;
     line-height: 1.6;
+    color: white; /* p no longer defaults to white globally */
 }
 
 @media (max-aspect-ratio: 1/1) {

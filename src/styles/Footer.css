@@ -1,144 +1,150 @@
 #theFooter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    background-color: var(--bg-third-color);
-    bottom: 0;
-    padding-top: 20px;
+    background-color: var(--ink);
+    color: rgba(255, 255, 255, .72);
 }
 
 #footerInfoContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
     width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 64px 24px 48px;
 }
 
 #footerSocialMedias {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
 }
 
 #footerLogo {
-    background: url("../assets/logos/GGBC%20_Logo_Gold2.png") no-repeat center center;
-    background-size: cover;
-    height: 50px;
+    background: url("../assets/logos/GGBC%20_Logo_Gold2.png") no-repeat left center;
+    background-size: contain;
+    height: 48px;
     aspect-ratio: 240 / 71;
-    padding: 20px;
     cursor: pointer;
+}
+
+#footerTagline {
+    margin: 0;
+    max-width: 26em;
+    font-size: .95rem;
+    color: rgba(255, 255, 255, .6);
 }
 
 #socialMediaContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.socialLink {
+    margin: 0;
+    display: inline-flex;
 }
 
 .svg-inline--fa {
-    width: 30px;
-    height: 30px;
+    width: 18px;
+    height: 18px;
 }
 
-.fa-facebook-f {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid white;
-    color: var(--facebook-color);
+.fa-facebook-f,
+.fa-instagram {
+    box-sizing: content-box;
+    padding: 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    color: rgba(255, 255, 255, .85);
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
 }
 
 .fa-facebook-f:hover {
-    background: radial-gradient(circle at bottom left, white, var(--facebook-color) 50%, var(--facebook-color));
-    color: white;
-}
-
-.fa-instagram {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid white;
-    color: var(--instagram-color);
+    background: var(--facebook-color);
+    border-color: var(--facebook-color);
+    color: #fff;
 }
 
 .fa-instagram:hover {
-    background: radial-gradient(circle at bottom left, white, var(--instagram-color) 50%, var(--instagram-color));
-    color: white;
+    background: var(--instagram-color);
+    border-color: var(--instagram-color);
+    color: #fff;
 }
 
 #footerContact {
-    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: center;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+#footerContactTitle {
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin: 0 0 4px;
 }
 
 .footerInfoContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: left;
     align-items: center;
-    width: 100%;
-    gap: 10px;
-    padding-left: 50px;
-    margin: 3px 0;
+    gap: 12px;
 }
 
 .footerInfo {
     margin: 0;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.footerInfo:hover {
+    color: var(--gold);
 }
 
 .footerInfoIcon {
     height: 1em;
     width: 1em;
-    vertical-align: left;
-    color: var(--text-color);
+    flex-shrink: 0;
+    color: var(--gold);
 }
 
-#footerLocation {
-    margin-left: -3px;
-    margin-right: 3px;
+#footerBottom {
+    border-top: 1px solid rgba(255, 255, 255, .08);
 }
 
 #developerInfo {
-    color: var(--text-color);
-    font-weight: 100;
-    font-size: 0.6em;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 20px 24px;
+    color: rgba(255, 255, 255, .45);
+    font-size: .8rem;
 }
 
 #devLink {
-    color: var(--text-color);
-    padding: 0;
+    color: rgba(255, 255, 255, .7);
     margin: 0;
-    font-weight: 100;
+    text-decoration: none;
+}
+
+#devLink:hover {
+    color: var(--gold);
 }
 
 @media (max-aspect-ratio: 1/1) {
     #footerInfoContainer {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #footerSocialMedias {
-        margin-bottom: 20px;
-    }
-
-    #footerContact {
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 48px 20px 36px;
     }
 
     #developerInfo {
+        padding: 20px;
         text-align: center;
     }
 }

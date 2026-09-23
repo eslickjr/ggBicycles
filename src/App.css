@@ -2,11 +2,31 @@
     --facebook-color: #1877F2;
     --instagram-color: #E4405F;
 
-    --bg-first-color: #e2e2e2;
-    --bg-second-color: #606060;
-    --bg-third-color: #212529;
+    /* Brand palette */
+    --gold: #f7c500;
+    --gold-hover: #ffd633;
+    --gold-ink: #9a7700;        /* gold that is readable on light backgrounds */
+    --ink: #15171a;             /* near-black for dark surfaces */
+    --ink-2: #1f2226;
+    --text: #1b1d21;
+    --muted: #5d626b;
+    --paper: #f5f4f0;           /* warm off-white page background */
+    --surface: #ffffff;
+    --line: #e2e0da;
 
-    --text-color: #f7c500;
+    /* Legacy names kept so older styles keep working */
+    --bg-first-color: var(--paper);
+    --bg-second-color: #606060;
+    --bg-third-color: var(--ink);
+    --text-color: var(--gold);
+
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+
+    --radius: 14px;
+    --shadow-sm: 0 1px 2px rgba(16, 18, 22, .06), 0 1px 3px rgba(16, 18, 22, .08);
+    --shadow-md: 0 4px 12px rgba(16, 18, 22, .08), 0 12px 32px rgba(16, 18, 22, .10);
+    --container: 1180px;
 
     --animation-percentage: 0%;
 }
@@ -15,33 +35,121 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
 ul {
     padding-inline-start: 0;
 }
 
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: var(--bg-first-color);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--paper);
     overflow-x: hidden;
 }
 
 a {
     margin: auto 10px;
-    color: black;
-}  
+    color: inherit;
+}
 
 p {
-    font-family: "Cactus Classical Serif", serif;
-    color: white;
+    font-family: var(--font-sans);
+    color: inherit;
 }
 
-h2, h3, h4 {
-    font-family: "Cal Sans", sans-serif;
-    letter-spacing: 2px;
+h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
 }
 
-input[type="button"] {
-    font-family: "PT Serif", serif;
+input[type="button"],
+input[type="submit"],
+button {
+    font-family: var(--font-sans);
+}
+
+/* Shared building blocks */
+.eyebrow {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    margin: 0 0 12px;
+}
+
+.sectionTitle {
+    font-family: var(--font-display);
     font-weight: 400;
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: var(--font-sans);
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+}
+
+.btn-primary:hover {
+    background: var(--gold-hover);
+    box-shadow: 0 6px 20px rgba(247, 197, 0, .35);
+}
+
+.btn-outline {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--line);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+    border-color: var(--text);
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, .35);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, .16);
+    border-color: #fff;
 }

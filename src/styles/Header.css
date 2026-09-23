@@ -1,10 +1,10 @@
 #theHeadContainer {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 0;
     top: 0;
     left: 0;
-    background-color: transparent;
+    z-index: 1000;
 }
 
 #theNavContainer {
@@ -12,54 +12,52 @@
     top: 0;
     z-index: 1000;
     width: 100%;
-    background-color: transparent;
-    border-bottom: none;
-    filter: drop-shadow(0px 0px 5px #000)
-        drop-shadow(0px 0px 10px #000)
-        drop-shadow(0px 0px 20px #000);
-    transition: background-color 0.3s ease-in-out, border-bottom 0.3s ease-in-out, filter 0.3s ease-in-out;
+    background: linear-gradient(to bottom, rgba(10, 11, 13, .65), rgba(10, 11, 13, 0));
+    border-bottom: 1px solid transparent;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
 #theNavContainer.scrolled {
-    background-color: var(--bg-third-color);
-    border-bottom: 1px solid #ccc;
-    filter: none;
-    transition: background-color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    background: rgba(21, 23, 26, .92);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom-color: rgba(255, 255, 255, .08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
 }
 
 #theHead {
     position: relative;
     width: 100%;
+    max-width: var(--container);
+    height: 76px;
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: transparent;
+    transition: height .3s ease;
+}
+
+#theNavContainer.scrolled #theHead {
+    height: 64px;
 }
 
 #headerLogo {
-    position: absolute;
-    left: calc(25% - 120px);
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: url("../assets/logos/GGBC%20_Logo_Gold2.png") no-repeat center center;
-    background-size: cover;
-    height: 50px;
+    background-size: contain;
+    height: 44px;
     aspect-ratio: 240 / 71;
-    padding: 20px;
-}
-
-#headerLogo:hover {
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 #theNav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 40px;
+    gap: 32px;
     align-items: center;
     list-style-type: none;
     margin: 0;
@@ -68,72 +66,82 @@
 
 .nav-item {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 .nav-link {
     position: relative;
-    padding: 25px 0;
+    margin: 0;
+    padding: 8px 0;
     text-decoration: none;
-    color: var(--text-color);
-    font-family: "Inter", sans-serif;
+    color: rgba(255, 255, 255, .82);
+    font-family: var(--font-sans);
     font-weight: 500;
-    font-size: .8rem;
-    transition: all 0.3s ease;
-    background-color: transparent;
+    font-size: .92rem;
+    letter-spacing: .01em;
+    background: none;
     border: none;
     cursor: pointer;
-}
-
-.nav-link.active {
-    color: white;
-    font-weight: 700;
-    cursor: default;
+    transition: color .2s ease;
 }
 
 .nav-link::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 10px;
+    bottom: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(to right, transparent, white, transparent);
-    transition: opacity 0.3s ease;
-    opacity: 0;
+    border-radius: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
 }
 
 .nav-link:hover {
-    color: white;
+    color: #fff;
 }
 
-.nav-link:not(.active):hover::after {
-    opacity: 1;
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.nav-link.active {
+    color: #fff;
+    cursor: default;
+}
+
+.nav-cta {
+    padding: 10px 20px;
+    font-size: .88rem;
 }
 
 @media (max-aspect-ratio: 1/1) {
     #theHead {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 20px;
-        align-items: center;
+        height: 64px;
+        padding: 0 16px;
+    }
+
+    #theNavContainer.scrolled #theHead {
+        height: 58px;
     }
 
     #headerLogo {
-        position: relative;
-        left: 0;
-        transform: translateX(0);
-        height: 25px;
+        height: 30px;
     }
 
     #theNav {
-        gap: 0px;
+        gap: 16px;
     }
 
     .nav-link {
-        padding: 17px 0;
+        font-size: .85rem;
+    }
+
+    .nav-cta {
+        padding: 8px 14px;
+        font-size: .82rem;
     }
 }
-

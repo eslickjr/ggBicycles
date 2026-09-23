@@ -54,32 +54,8 @@
     }
 }
 
-#landingTitleContainer {
-    position: relative;
-    width: 100%;
-    background: url("../assets/logos/black%20and%20white%20header%20image%20copy.png") no-repeat center center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    aspect-ratio: 1 / .32;
-    background-position: center bottom;
-}
 
-#landingTitle {
-    position: relative;
-    color: var(--bg-first-color);
-    font-family: "Lobster", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    text-shadow: 0 0 5px #000, 0 0 10px #000;
-    font-size: 3em;
-    font-weight: 300;
-    margin: 0;
-    left: 75%;
-    transform: translate(-25%, 15%);
-}
-
+/* ---- legacy carousel (currently unused) ---- */
 #landingRepairContainer {
     display: flex;
     flex-direction: column;
@@ -210,130 +186,171 @@
     text-align: center;
 }
 
-#landingMaintenanceContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+
+/* ================= Hero ================= */
+#landingTitleContainer {
+    position: relative;
     width: 100%;
-    margin-bottom: 4.5vw;
+    min-height: min(86vh, 760px);
+    display: flex;
+    align-items: flex-end;
+    background:
+        linear-gradient(90deg, rgba(10, 11, 13, .78) 0%, rgba(10, 11, 13, .45) 45%, rgba(10, 11, 13, .05) 80%),
+        linear-gradient(0deg, rgba(10, 11, 13, .55) 0%, rgba(10, 11, 13, 0) 45%),
+        url("../assets/heroRoad.jpg") no-repeat 20% 100%;
+    background-size: cover;
+}
+
+#landingHeroContent {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 140px 24px 96px;
+}
+
+#landingHeroEyebrow {
+    color: var(--gold);
+}
+
+#landingTitle {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+}
+
+#landingHeroSub {
+    color: rgba(255, 255, 255, .82);
+    font-size: 1.125rem;
+    max-width: 30em;
+    margin: 0 0 32px;
+}
+
+#landingHeroActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ================= Section heads ================= */
+.landingSectionHead {
+    text-align: center;
+    margin: 0 auto 48px;
+    padding: 0 24px;
+}
+
+/* ================= Services ================= */
+#landingServices {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 104px 24px 96px;
+}
+
+#landingMaintenanceContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
 }
 
 .landingWorkWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 35%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.landingWorkWrapper:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
 }
 
 .landingWorkContainer {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    aspect-ratio: 1 / 0.75;
-    padding: 40px;
-    border-radius: 20px;
-    margin: 20px 40px 4.5vw 40px;
-    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .7)) drop-shadow(0px 10px 10px rgba(0, 0, 0, .7));
-    transition: transform 0.3s ease-in-out;
+    aspect-ratio: 16 / 10;
 }
-
-.landingWorkContainer:hover {
-    transform: scale(1.05);
-}
-
-
-
-/* #landingInspectionsTitle {
-    opacity: 0;
-    transform: translateY(-50px);
-    transition: opacity 1s ease, transform 1s ease;
-} */
-
-#landingInspectionsTitle.loaded {
-    animation: fadeIn 1s ease forwards;
-}
-
 
 #landingInspectionsContainer {
-    background: url("../assets/logos/adam%20shop.jpg") no-repeat center top;
+    background: url("../assets/logos/adam%20shop.jpg") no-repeat center 25%;
     background-size: cover;
 }
 
-/* #landingPersonalizedTitle {
-    opacity: 1;
-    transform: translateY(0);
-} */
-
-#landingPersonalizedTitle.loaded {
-    animation: fadeIn 1s ease forwards;
-}
-
 #landingPersonalizedContainer {
-    background: url("../assets/trail.png") no-repeat top left;
-    background-size: 110% 110%;
+    background: url("../assets/trail.png") no-repeat center 40%;
+    background-size: cover;
 }
 
 .landingWorkOverlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    border-radius: 20px;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0) 50%);
+}
+
+.landingWorkBody {
+    padding: 28px 32px 32px;
+}
+
+.landingMaintenanceTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 10px;
 }
 
 .landingWorkSummary {
-    text-align: center;
-    z-index: 2;
-    line-height: 2;
+    color: var(--muted);
+    margin: 0;
 }
 
+/* ================= Appointment band ================= */
 #landingApptContainer {
+    background: var(--ink);
+    color: #fff;
+}
+
+#landingApptInner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 56px 24px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    margin-bottom: 4.5vw;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+#landingApptTitle {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 2.6vw, 2.25rem);
+    margin: 0 0 6px;
+}
+
+#landingApptText {
+    color: rgba(255, 255, 255, .7);
+    margin: 0;
 }
 
 #landingApptButton {
-    background-color: transparent;
-    color: black;
-    font-size: 1.2em;
-    font-weight: 900;
-    padding: 20px 40px;
-    border-radius: 100px;
-    border: 2px solid black;
-    cursor: pointer;
-    margin-bottom: 4.5vw;
-    box-shadow: none;
-    transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease;
+    flex-shrink: 0;
+    padding: 16px 32px;
+    font-size: 1rem;
 }
 
-#landingApptButton:hover {
-    background-color: var(--bg-third-color);
-    color: white;
-    border: 2px solid white;
-    /* transform: scale(1.05); */
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
-    /* outline: 2px solid black; */
-    /* margin-bottom: 64px; */
-}
-
+/* ================= Reviews ================= */
 #landingReviewsArea {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 4.5vw;
+    padding: 104px 0 96px;
 }
 
 #landingReviewsWrapper {
@@ -342,7 +359,6 @@
     flex-direction: row;
     justify-content: left;
     align-items: stretch;
-    /* Ensure child elements have no explicit height or set height to auto */
     width: 100%;
     overflow: hidden;
 }
@@ -351,7 +367,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    padding: 20px 0;
+    padding: 12px 0 24px;
     margin: 0;
     flex: 1 0 auto;
 }
@@ -376,34 +392,36 @@
     animation: glideReset 32s linear infinite;
 }
 
+#landingReviewsWrapper:hover .landingReviewsContainer {
+    animation-play-state: paused;
+}
+
 #landingReviewsOverlay {
     position: absolute;
-    content: "";
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, var(--bg-first-color) 5%, transparent 25%, transparent 75%, var(--bg-first-color) 95%);
+    background: linear-gradient(to right, var(--paper) 2%, transparent 18%, transparent 82%, var(--paper) 98%);
     z-index: 3;
     pointer-events: none;
 }
 
 .landingReviewContainer {
-    positioN: relative;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    padding: 0 20px;
-    margin: 0 20px;
-    border-radius: 4.5vw;
+    justify-content: flex-start;
+    padding: 28px 28px 24px;
+    margin: 0 12px;
+    border-radius: var(--radius);
     aspect-ratio: 1 / .75;
     overflow: hidden;
     height: 100%;
     cursor: default;
-    background: linear-gradient(135deg, var(--bg-second-color) 40%, var(--bg-first-color));
-    border: 2px solid white;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5), 0px 0px 10px rgba(0, 0, 0, .5);
-    transition: transform 0.3s ease;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
 }
 
 #landingReviewsContainer1 .landingReviewContainer, #landingReviewsContainer3 .landingReviewContainer {
@@ -414,31 +432,39 @@
     width: 100%;
 }
 
-.landingReviewContainer:hover {
-    transform: scale(1.05);
-}
-
-.landingReviewTitle {
-    color: white;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-align: center;
-}
-
 .ratingContainer {
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    display: flex;
+    gap: 3px;
+    color: var(--gold);
+    margin: 0 0 14px;
 }
 
 .landingReviewSummary {
-    margin-top: 5px;
+    color: var(--text);
+    font-size: .98rem;
+    line-height: 1.65;
+    margin: 0 0 16px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-clamp: 9; /* Doesn't work without -webkit- prefix */
-    -webkit-line-clamp: 9; /* Number of lines to show */
+    line-clamp: 7;
+    -webkit-line-clamp: 7;
+}
+
+.landingReviewTitle {
+    margin: auto 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+#landingLeaveReviewTitle {
+    color: var(--muted);
+    margin: 40px 0 16px;
+    text-align: center;
 }
 
 #landingReviewBtnContainer {
@@ -446,80 +472,61 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 12px;
     width: 100%;
-    margin-top: 20px;
 }
 
 .landingReviewBtn {
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-size: 1.2em;
-    font-weight: 900;
-    padding: 20px 40px;
-    border-radius: 100px;
-    border: 2px solid black;
-    cursor: pointer;
-    margin-bottom: 4.5vw;
-    box-shadow: none;
-    text-decoration: none;
-    
-    font-family: "Cactus Classical Serif", serif;
-    transition: box-shadow .3s ease, background-color .5s ease, transform 0.5s ease, border 0.5s ease, color 0.5s ease;
-}
-
-.landingReviewBtn:hover {
-    background-color: var(--bg-third-color);
-    color: white;
-    border: 2px solid white;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    padding: 12px 22px;
 }
 
 .compLogo {
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
     aspect-ratio: 1 / 1;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .landingReviewsContainer {
+        animation-play-state: paused !important;
+    }
+}
+
+/* ================= Portrait / mobile ================= */
 @media (max-aspect-ratio: 1/1) {
     @keyframes glideAcross {
-        0% {
-            transform: translateX(0%);
-        }
-        100% {
-            transform: translateX(-200%);
-        }
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-200%); }
     }
-    
+
     @keyframes glideOn {
-        0% {
-            transform: translateX(0%);
-        }
-        100% {
-            transform: translateX(-200%);
-        }
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-200%); }
     }
-    
+
     @keyframes glideReset {
-        0% {
-            transform: translateX(0%);
-        }
-        100% {
-            transform: translateX(-200%);
-        }
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-200%); }
     }
 
     #landingTitleContainer {
-        justify-content: flex-end;
-        align-items: center;
+        min-height: 78vh;
+        background:
+            linear-gradient(0deg, rgba(10, 11, 13, .85) 0%, rgba(10, 11, 13, .35) 55%, rgba(10, 11, 13, .15) 100%),
+            url("../assets/heroRoad.jpg") no-repeat 46% center;
+        background-size: cover;
     }
 
-    #landingTitle {
-        transform: translate(0, 0);
-        left: 0;
-        font-size: 2em;
+    #landingHeroContent {
+        padding: 120px 20px 56px;
+    }
+
+    #landingHeroSub {
+        font-size: 1rem;
+    }
+
+    #landingHeroActions .btn {
+        flex: 1 1 100%;
     }
 
     #landingRepairImageWrapper {
@@ -540,27 +547,35 @@
         margin: 10px;
     }
 
+    #landingServices {
+        padding: 72px 16px 64px;
+    }
+
+    .landingSectionHead {
+        margin-bottom: 32px;
+    }
+
     #landingMaintenanceContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .landingWorkBody {
+        padding: 22px 22px 26px;
+    }
+
+    #landingApptInner {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .landingMaintenanceTitle {
-        text-align: center;
-    }
-
-    .landingWorkWrapper {
-        width: 90%;
-    }
-
-    .landingWorkContainer {
-        width: 100%;
-        margin: 20px 0;
+        align-items: flex-start;
+        padding: 48px 20px;
     }
 
     #landingApptButton {
-        font-size: 1em;
-        padding: 15px 30px;
+        width: 100%;
+    }
+
+    #landingReviewsArea {
+        padding: 72px 0 64px;
     }
 
     #landingReviewsContainer2 {
@@ -570,11 +585,11 @@
     #landingReviewsContainer1 {
         animation: glideAcross 16s linear infinite;
     }
-    
+
     #landingReviewsContainer2 {
         animation: glideOn 16s linear infinite;
     }
-    
+
     #landingReviewsContainer3 {
         animation: glideReset 16s linear infinite;
     }
@@ -585,11 +600,17 @@
 
     .landingReviewContainer {
         width: 90%;
+        aspect-ratio: auto;
+        min-height: 300px;
     }
 
     #landingReviewBtnContainer {
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        padding: 0 20px;
+    }
+
+    .landingReviewBtn {
+        width: 100%;
+        max-width: 320px;
     }
 }

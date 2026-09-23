@@ -1,139 +1,97 @@
 #aboutBackground {
-    padding: 9vw 9vw 9vw 0;
-    background: url("./../assets/greyShop3.jpg") no-repeat center center;
-    background-size: cover;
+    position: relative;
     width: 100%;
-    aspect-ratio: 1 / .25;
+    min-height: 340px;
+    display: flex;
+    align-items: flex-end;
+    background:
+        linear-gradient(0deg, rgba(10, 11, 13, .75) 0%, rgba(10, 11, 13, .25) 60%, rgba(10, 11, 13, .45) 100%),
+        url("./../assets/greyShop3.jpg") no-repeat center 60%;
+    background-size: cover;
+}
+
+#aboutBackgroundInner {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px 40px;
+}
+
+#aboutBannerTitle {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 4vw, 3.25rem);
+    margin: 0;
 }
 
 #aboutContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
     align-items: center;
-    gap: 20px;
+    gap: 64px;
     width: 100%;
-    padding: 9vw 0 9vw 0;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 96px 24px 112px;
 }
 
 #aboutParagraphContainer {
-    position: relative;
-    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: -60px;
-    background: linear-gradient(to right, var(--bg-second-color), var(--bg-first-color));
-    box-shadow: -10px 0px 5px rgba(0, 0, 0, 0.5),
-        -20px 0px 10px rgba(0, 0, 0, 0.5),
-        -40px 0px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    will-change: transform;
+    align-items: flex-start;
 }
 
-#aboutParagraphContainer:hover {
-    transform: translateX(30px);
-    transition: transform 0.3s ease;
+#aboutTitle {
+    margin-bottom: 20px;
 }
 
 #aboutParagraph {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 80px 40px 140px;
-    font-size: 1.2rem;
+    color: var(--muted);
+    font-size: 1.125rem;
+    line-height: 1.75;
     margin: 0;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(0, 0, 0, 0.5),
-        0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    cursor: default;
-}
-
-#aboutParagraph::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, white, var(--bg-first-color));
-}
-
-#aboutParagraph::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, white, var(--bg-first-color));
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
 }
 
 #aboutImgContainer {
-    width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 5%;
 }
 
 #aboutImg {
-    width: calc(100% - 60px);
-    aspect-ratio: 1 / 1;
-    background: url("./../assets/adam.jpg") no-repeat center center;
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 4 / 5;
+    background: url("./../assets/adam.jpg") no-repeat center top;
     background-size: cover;
-    background-position: center top;
-    /* clip-path: circle(50%); */
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5),
-        0px 0px 10px rgba(0, 0, 0, 0.5),
-        0px 0px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    will-change: transform;
-}
-
-#aboutImg:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    outline: 1px solid rgba(0, 0, 0, .04);
 }
 
 @media (max-aspect-ratio: 1/1) {
-    #aboutContainer {
-        flex-direction: column;
-        padding: 0;
+    #aboutBackground {
+        min-height: 260px;
     }
 
-    #aboutParagraphContainer {
-        width: 100%;
-        margin-left: 0;
-        padding: 0;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5),
-        0px 0px 10px rgba(0, 0, 0, 0.5),
-        0px 0px 20px rgba(0, 0, 0, 0.5);
+    #aboutBackgroundInner {
+        padding: 0 20px 28px;
+    }
+
+    #aboutContainer {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 56px 20px 72px;
     }
 
     #aboutParagraph {
-        padding: 40px 20px;
-        font-size: 1rem;
-    }
-    
-    #aboutParagraph::after, #aboutParagraph::before {
-        background: white;
-    }
-
-    #aboutImgContainer {
-        width: 100%;
-        padding: 0;
-        margin-bottom: 4.5vw;
-        margin-top: 4.5vw;
+        font-size: 1.02rem;
     }
 
     #aboutImg {
-        width: calc(100% - 20px);
+        max-width: none;
+        aspect-ratio: 1 / 1;
     }
-    
 }

@@ -4,6 +4,14 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import AppointmentModal from "../components/AppointmentModal";
 
+const Stars = () => (
+  <div className="ratingContainer" aria-label="5 out of 5 stars">
+    {Array.from({ length: 5 }, (_, i) => (
+      <svg key={i} viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z" /></svg>
+    ))}
+  </div>
+);
+
 export default function Landing() {
   const imgCarouselRef = useRef([true, true, true, true, false, false, false, false]);
   const imgCarouselIndex = useRef(3);
@@ -23,7 +31,7 @@ export default function Landing() {
 
   useEffect(() => {
     const img1 = new Image();
-    img1.src = "../assets/logos/black%20and%20white%20header%20image%20copy.png";
+    img1.src = "../assets/heroRoad.jpg";
     const img2 = new Image();
     img2.src = "../assets/chainSpray.jpg";
     const img3 = new Image();
@@ -168,9 +176,9 @@ export default function Landing() {
       if (index === reviewsOnScreen.length - 1) return null;
       return (
         <div key={index} className={`landingReviewContainer ${index >= onScreenIndex && index < onScreenIndex + 4 ? `reviewOnScreen` : "reviewOffScreen"} ${onScreenIndex + 4 === index ? "reviewUpNext" : ""}`}>
+          <Stars />
+          <p className="landingReviewSummary">&ldquo;{reviewData[data].review}&rdquo;</p>
           <p className="landingReviewTitle">{reviewData[data].name}</p>
-          <p className="ratingContainer">{"⭐".repeat(5)}</p>
-          <p className="landingReviewSummary">{reviewData[data].review}</p>
         </div>
       );
     });  
@@ -179,7 +187,15 @@ export default function Landing() {
   return (
     <div id="landing">
       <div id="landingTitleContainer">
-        <h1 id="landingTitle">Speedy Repairs, {mobile && <><br /><span>&emsp;&emsp;</span></>}Smooth Rides.</h1>
+        <div id="landingHeroContent">
+          <span className="eyebrow" id="landingHeroEyebrow">Bicycle Repair &middot; Piedmont, SC</span>
+          <h1 id="landingTitle">Speedy Repairs,<br />Smooth Rides.</h1>
+          <p id="landingHeroSub">Honest, expert care for every kind of bike &mdash; from first bikes to trail rigs.</p>
+          <div id="landingHeroActions">
+            <button type="button" className="btn btn-primary" onClick={() => {setModal(true)}}>Book an Appointment</button>
+            <Link to="tel:8032705688" className="btn btn-ghost">Call (803) 270-5688</Link>
+          </div>
+        </div>
         {/* Ride Local. Repair Local. */}
       </div>
       {/* <div id="landingSummaryContainer">
@@ -209,27 +225,46 @@ export default function Landing() {
           <p id="landingRepairSummary">I offer fast and efficient services tailored to your needs.</p>
         </div>
       </div> */}
-      <div id="landingMaintenanceContainer">
-        <div id="landingInspectionsWrapper" className="landingWorkWrapper">
-          <h2 id="landingInspectionsTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Comprehensive Inspections</h2>
-          <div id="landingInspectionsContainer" className="landingWorkContainer">
-            <div id="landingInspectionsOverlay" className="landingWorkOverlay" />
-            <p id="landingInspectionsSummary" className="landingWorkSummary">I'll thoroughly inspect your bike, identifying any issues or areas that need attention. I’ll provide a detailed report and recommendations to keep your ride in top shape.</p>
-          </div>
+      <section id="landingServices">
+        <div className="landingSectionHead">
+          <span className="eyebrow">What I Do</span>
+          <h2 className="sectionTitle">Service you can count on</h2>
         </div>
-        <div id="landingPersonalizedWrapper" className="landingWorkWrapper">
-        <h2 id="landingPersonalizedTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Personalized Maintenance</h2>
-          <div id="landingPersonalizedContainer" className="landingWorkContainer">
-            <div id="landingPersonalizedOverlay" className="landingWorkOverlay" />
-            <p id="landingPersonalizedSummary" className="landingWorkSummary">With my customized maintenance plans, I’ll ensure your bicycle receives the specialized care it needs, from regular tune-ups to comprehensive overhauls. Trust me to keep your bike running smoothly.</p>
-          </div>
+        <div id="landingMaintenanceContainer">
+          <article id="landingInspectionsWrapper" className="landingWorkWrapper">
+            <div id="landingInspectionsContainer" className="landingWorkContainer">
+              <div id="landingInspectionsOverlay" className="landingWorkOverlay" />
+            </div>
+            <div className="landingWorkBody">
+              <h3 id="landingInspectionsTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Comprehensive Inspections</h3>
+              <p id="landingInspectionsSummary" className="landingWorkSummary">I'll thoroughly inspect your bike, identifying any issues or areas that need attention. I’ll provide a detailed report and recommendations to keep your ride in top shape.</p>
+            </div>
+          </article>
+          <article id="landingPersonalizedWrapper" className="landingWorkWrapper">
+            <div id="landingPersonalizedContainer" className="landingWorkContainer">
+              <div id="landingPersonalizedOverlay" className="landingWorkOverlay" />
+            </div>
+            <div className="landingWorkBody">
+              <h3 id="landingPersonalizedTitle" className={`landingMaintenanceTitle ${loaded ? "loaded" : ""}`}>Personalized Maintenance</h3>
+              <p id="landingPersonalizedSummary" className="landingWorkSummary">With my customized maintenance plans, I’ll ensure your bicycle receives the specialized care it needs, from regular tune-ups to comprehensive overhauls. Trust me to keep your bike running smoothly.</p>
+            </div>
+          </article>
         </div>
-      </div>
-      <div id="landingApptContainer">
-        <input id="landingApptButton" type="button" value="Book Appointment" onClick={() => {setModal(true)}} />
-      </div>
+      </section>
+      <section id="landingApptContainer">
+        <div id="landingApptInner">
+          <div>
+            <h2 id="landingApptTitle">Ready for a tune-up?</h2>
+            <p id="landingApptText">Send a quick note and I'll get back to you to find a time that works.</p>
+          </div>
+          <input id="landingApptButton" className="btn btn-primary" type="button" value="Book Appointment" onClick={() => {setModal(true)}} />
+        </div>
+      </section>
       <div id="landingReviewsArea">
-        <h2 id="landingReviewsTitle" className={loaded ? "loaded" : ""}>What My Customers Say</h2>
+        <div className="landingSectionHead">
+          <span className="eyebrow">Reviews</span>
+          <h2 id="landingReviewsTitle" className={`sectionTitle ${loaded ? "loaded" : ""}`}>What my customers say</h2>
+        </div>
         <div id="landingReviewsWrapper">
           <div id="landingReviewsOverlay" />
           <div id="landingReviewsContainer1" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
@@ -237,26 +272,24 @@ export default function Landing() {
           </div>
           <div id="landingReviewsContainer2" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
             <div key={visibleCount + 1} className={`landingReviewContainer ${visibleCount >= onScreenIndex && visibleCount < onScreenIndex + 4 ? `reviewOnScreen` : "reviewOffScreen"} ${onScreenIndex + 4 === visibleCount ? "reviewUpNext" : ""}`}>
+              <Stars />
+              <p className="landingReviewSummary">&ldquo;{reviewData[reviewsOnScreen[visibleCount]].review}&rdquo;</p>
               <p className="landingReviewTitle">{reviewData[reviewsOnScreen[visibleCount]].name}</p>
-              <p className="ratingContainer">{"⭐".repeat(5)}</p>
-              <p className="landingReviewSummary">{reviewData[reviewsOnScreen[visibleCount]].review}</p>
             </div>
           </div>
           <div id="landingReviewsContainer3" ref={reviewListRef} className={`landingReviewsContainer ${onScreenIndex < visibleCount ? "onScreen" : ""}`}>
             {reviewsList()}
           </div>
         </div>
-        <h2 id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Let me know what you think!</h2>
+        <p id="landingLeaveReviewTitle" className={loaded ? "loaded" : ""}>Been in recently? I'd love to hear how it went.</p>
         <div id="landingReviewBtnContainer">
-          <Link id="landingGoogleBtn" className="landingReviewBtn" to="https://www.google.com/search?q=golden+grove+bicycles&sca_esv=6f4cffb8fcc6cffb&sxsrf=AHTn8zrrk5jcha03FlEWHVme9gyitiprzA%3A1746549437436&source=hp&ei=vToaaLSuGOvfkPIPzfLrKA&iflsig=ACkRmUkAAAAAaBpIzcXd8oxOaLXv0pUNLOyCL4fZh_jB&oq=golden+gro&gs_lp=Egdnd3Mtd2l6Igpnb2xkZW4gZ3JvKgIIADIEECMYJzIEECMYJzIOEC4YgAQYxwEYjgUYrwEyCxAAGIAEGLEDGIMBMgUQLhiABDILEC4YgAQYxwEYrwEyBRAuGIAEMgsQLhiABBjHARivATIFEAAYgAQyBRAAGIAESPEPUABY9ghwAHgAkAEAmAGHAaABtQmqAQMxLjm4AQPIAQD4AQGYAgqgAs8JwgIKECMYgAQYJxiKBcICFBAuGIAEGJECGMcBGIoFGI4FGK8BwgILEC4YgAQYkQIYigXCAhEQLhiABBixAxjRAxiDARjHAcICCxAAGIAEGJECGIoFwgIIEAAYgAQYsQPCAgsQLhiABBixAxiDAcICDhAuGIAEGLEDGNEDGMcBwgIIEC4YgAQYsQPCAg4QLhiABBixAxjHARivAZgDAJIHAzEuOaAHwqcBsgcDMS45uAfPCQ&sclient=gws-wiz#lrd=0x885839946d5aca79:0x664da6df808040bc,3,,,," target="_blank" rel="noopener noreferrer">
-            Leave a&nbsp;
+          <Link id="landingGoogleBtn" className="landingReviewBtn btn btn-outline" to="https://www.google.com/search?q=golden+grove+bicycles&sca_esv=6f4cffb8fcc6cffb&sxsrf=AHTn8zrrk5jcha03FlEWHVme9gyitiprzA%3A1746549437436&source=hp&ei=vToaaLSuGOvfkPIPzfLrKA&iflsig=ACkRmUkAAAAAaBpIzcXd8oxOaLXv0pUNLOyCL4fZh_jB&oq=golden+gro&gs_lp=Egdnd3Mtd2l6Igpnb2xkZW4gZ3JvKgIIADIEECMYJzIEECMYJzIOEC4YgAQYxwEYjgUYrwEyCxAAGIAEGLEDGIMBMgUQLhiABDILEC4YgAQYxwEYrwEyBRAuGIAEMgsQLhiABBjHARivATIFEAAYgAQyBRAAGIAESPEPUABY9ghwAHgAkAEAmAGHAaABtQmqAQMxLjm4AQPIAQD4AQGYAgqgAs8JwgIKECMYgAQYJxiKBcICFBAuGIAEGJECGMcBGIoFGI4FGK8BwgILEC4YgAQYkQIYigXCAhEQLhiABBixAxjRAxiDARjHAcICCxAAGIAEGJECGIoFwgIIEAAYgAQYsQPCAgsQLhiABBixAxiDAcICDhAuGIAEGLEDGNEDGMcBwgIIEC4YgAQYsQPCAg4QLhiABBixAxjHARivAZgDAJIHAzEuOaAHwqcBsgcDMS45uAfPCQ&sclient=gws-wiz#lrd=0x885839946d5aca79:0x664da6df808040bc,3,,,," target="_blank" rel="noopener noreferrer">
             <svg className="compLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-            &nbsp;Review
+            Review on Google
           </Link>
-          <Link id="landingYelpBtn" className="landingReviewBtn" to="https://www.yelp.com/writeareview/biz/acU0GygCCz1rdVNFKz74BA?return_url=%2Fbiz%2FacU0GygCCz1rdVNFKz74BA&review_origin=biz-details-war-button" target="_blank" rel="noopener noreferrer">
-            Leave a&nbsp;
+          <Link id="landingYelpBtn" className="landingReviewBtn btn btn-outline" to="https://www.yelp.com/writeareview/biz/acU0GygCCz1rdVNFKz74BA?return_url=%2Fbiz%2FacU0GygCCz1rdVNFKz74BA&review_origin=biz-details-war-button" target="_blank" rel="noopener noreferrer">
             <svg className="compLogo" xmlns="http://www.w3.org/2000/svg" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 228.097 228.097" ><g><path style={{fill:'#C1272D'}} d="M173.22,68.06c8.204,6.784,30.709,25.392,27.042,38.455c-1.696,5.867-8.434,7.746-13.43,9.579   c-11.505,4.171-23.33,7.471-35.339,9.9c-9.717,1.971-30.48,6.279-26.63-10.909c1.512-6.646,6.875-12.284,11.184-17.28   c8.846-10.404,17.876-21.405,28.555-29.93c0.871-0.688,1.925-0.871,2.842-0.733C169.232,66.41,171.386,66.502,173.22,68.06z"/><path style={{fill:'#C1272D'}} d="M161.119,205.197c-7.196-5.821-12.284-14.942-16.684-22.917c-4.309-7.7-11.092-17.876-12.238-26.813   c-2.337-18.38,24.292-7.333,31.947-4.675c10.175,3.575,37.447,7.517,34.422,23.421c-2.521,12.971-18.151,28.784-31.213,30.801   c-0.137,0.046-0.321,0-0.504,0c-0.046,0.046-0.092,0.092-0.137,0.137c-0.367,0.183-0.779,0.413-1.192,0.596   C163.961,206.573,162.449,206.252,161.119,205.197z"/><path style={{fill:'#C1272D'}} d="M101.58,157.896c14.484-6.004,15.813,10.175,15.721,19.984c-0.137,11.688-0.504,23.421-1.375,35.063   c-0.321,4.721-0.137,10.405-4.629,13.384c-5.546,3.667-16.225,0.779-21.955-1.008c-0.183-0.092-0.367-0.183-0.55-0.229   c-12.054-2.108-26.767-7.654-28.188-18.792c-0.138-1.283,0.367-2.429,1.146-3.3c0.367-0.688,0.733-1.329,1.146-1.925   c1.788-2.475,3.85-4.675,5.913-6.921c3.483-5.179,7.242-10.175,11.229-14.988C85.813,172.197,92.917,161.471,101.58,157.896z"/><path style={{fill:'#C1272D'}} d="M103.689,107.661c-21.13-17.371-41.71-44.276-52.344-69.164   c-8.113-18.93,12.513-30.48,28.417-35.705c21.451-7.059,29.976-0.917,32.13,20.534c1.788,18.471,2.613,37.08,2.475,55.643   c-0.046,7.838,2.154,20.488-2.429,27.547c0.733,2.888-3.621,4.95-6.096,2.979c-0.367-0.275-0.733-0.642-1.146-0.963   C104.33,108.303,104.009,108.028,103.689,107.661z"/><path style={{fill:'#C1272D'}} d="M101.397,134.566c1.696,7.517-3.621,10.542-9.854,13.384c-11.092,4.996-22.734,8.984-34.422,12.284   c-6.784,1.879-17.188,6.371-23.742,1.375c-4.95-3.758-5.271-11.596-5.729-17.28c-1.008-12.696,0.917-42.993,18.517-44.276   c8.617-0.596,19.388,7.104,26.447,11.138c9.396,5.409,19.48,11.596,26.492,20.076C100.159,131.862,101.03,132.916,101.397,134.566z   "/></g></svg>
-            &nbsp;Review
+            Review on Yelp
           </Link>
         </div>
       </div>
